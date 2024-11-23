@@ -1,9 +1,27 @@
 import { getRouteConfig } from './routes.js';
 
-function loadComponent(containerId, filePath) {
+function updateHeader(navItems) {
+    const navList = document.getElementById('nav-list');
+    if (navList) {
+        navList.innerHTML = '';
+
+        navItems.forEach(item => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.textContent = item.text;
+            a.href = item.href;
+            li.appendChild(a);
+            navList.appendChild(li);
+        });
+    } else {
+        console.error('Элемент с ID "nav-list" не найден.');
+    }
+}
+
+function loadPage(containerId, filePath) {
     return fetch(filePath)
         .then(response => {
-            if (!response.ok) throw new Error(`Ошибка загрузки компонента: ${filePath}`);
+            if (!response.ok) throw new Error(`Ошибка загрузки: ${filePath}`);
             return response.text();
         })
         .then(data => {
@@ -19,17 +37,15 @@ function loadComponent(containerId, filePath) {
 
 export function initRouter() {
     function navigate() {
-        const path = window.location.pathname; 
+        const path = window.location.pathname;
         const routeConfig = getRouteConfig(path);
 
-        loadComponent('header', routeConfig.header)
-            .catch(error => console.error('Ошибка загрузки header:', error));
+        if (routeConfig.navItems) {
+            updateHeader(routeConfig.navItems);
+        }
 
-        loadComponent('app', routeConfig.page)
+        loadPage('app', routeConfig.page)
             .catch(error => console.error('Ошибка загрузки страницы:', error));
-
-        loadComponent('footer', '../components/common/footer/index.html')
-            .catch(error => console.error('Ошибка загрузки footer:', error));
     }
 
     window.addEventListener('popstate', navigate);
@@ -37,11 +53,11 @@ export function initRouter() {
     document.addEventListener('click', event => {
         const target = event.target.closest('a');
         if (target && target.href.startsWith(window.location.origin)) {
-            event.preventDefault(); 
-            window.history.pushState(null, '', target.pathname); 
-            navigate(); 
+            event.preventDefault();
+            window.history.pushState(null, '', target.pathname);
+            navigate();
         }
     });
 
-    navigate(); 
+    navigate();
 }
