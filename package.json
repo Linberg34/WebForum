@@ -4,5 +4,8 @@
   },
   "devDependencies": {
     "parcel": "^2.13.0"
+  },
+  "dependencies": {
+    "imask": "^7.6.1"
   }
 }

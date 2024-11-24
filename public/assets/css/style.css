@@ -112,3 +112,82 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+
+/* Reg Form */
+
+.registrationFormContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.registrationFormContainer .regForm {
+    min-width: 320px;
+    max-width: 480px;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+}
+
+.registrationFormContainer h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #212529;
+}
+
+.registrationFormContainer label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #495057;
+    text-align: left;
+    display: block;
+}
+
+.registrationFormContainer input,
+.registrationFormContainer select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; 
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.registrationFormContainer input:focus,
+.registrationFormContainer select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.registrationFormContainer small {
+    display: block;
+    margin-top: -10px; 
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.registrationFormContainer .btnReg {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.registrationFormContainer .btnReg:hover {
+    background-color: #0056b3;
+}
