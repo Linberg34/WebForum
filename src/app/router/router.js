@@ -44,8 +44,3 @@ export function initRouter(root) {
 
     navigate();
 }
-
-export function insertPageIntoContainer(container, filePath){
-
-
-}

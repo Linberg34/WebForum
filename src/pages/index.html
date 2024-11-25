@@ -1,0 +1,45 @@
+<header class="header">
+    <nav>
+        <div class="navList">
+            <div>
+                <span class="blogTitle">Блог №415</span>
+                <a href="/" class="mainPage">Главная</a>
+            </div>
+            <a href="/login" class="loginButton">Вход</a>
+        </div>
+    </nav>
+</header>
+
+<div class="registrationFormContainer">
+    <form class="regForm" id="regForm">
+        <h2>Регистрация</h2>
+        <label for="fullName">ФИО</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Иванов Иван Иванович" required>
+        
+        <label for="birthDate">Дата рождения</label>
+        <input type="date" id="birthDate" name="birthDate" placeholder="дд.мм.гггг">
+        
+        <label for="gender">Пол</label>
+        <select type="text" id="gender" name="gender" placeholder="Мужчина" required>
+            <option value="male">Мужчина</option>
+            <option value="female">Женщина</option>
+        </select>
+        
+        <label for="phone">Телефон</label>
+        <input type="phone" id="phone" name="phone" placeholder="+7 (xxx) xxx-xx-xx" >
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+        <small class="emailHint">Email будет использоваться для входа в систему</small>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button id="registerButton" class="btnReg">Зарегистрироваться</button>
+    </form>
+</div>
+
+
+<footer class="footer">
+    <p>© 2024 - Блог №415</p>
+</footer>

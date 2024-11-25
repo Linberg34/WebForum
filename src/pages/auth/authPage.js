@@ -1,8 +1,16 @@
-import { loadAuthForm } from './authFormLoader.js';
+import { checkData } from "./checkData";
+import { sendAuthRequest } from "./sendAuthRequest";
 
-console.log("xui");
-document.addEventListener('DOMContentLoaded', () => {
-    loadAuthForm(); 
-});
+document.getElementById('loginForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-export default {};
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const errors = checkData(email, password);
+
+    if (errors.length > 0) {
+        document.getElementById('errors').textContent = errors.join(', ');
+    } else {
+        sendAuthRequest(email, password);
+    }
+}); 
