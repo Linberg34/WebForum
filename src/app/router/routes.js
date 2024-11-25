@@ -4,8 +4,7 @@ function createPath(path) { return `${parcerRoot}/${path}` };
 
 export const routes = {
     '/login': { page: createPath(`src/pages/auth/index.html`)},
-    '/': { page: createPath('src/pages/home.html') } ,
-    '/registartion': { page: createPath('src/pages/registartion/index.html') }
+    '/registration': { page: createPath('src/pages/registration/index.html')}
 };
 
 

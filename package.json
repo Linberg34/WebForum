@@ -3,7 +3,7 @@
     "dev": "parcel ./index.html"
   },
   "devDependencies": {
-    "parcel": "^2.13.0"
+    "parcel": "^2.13.1"
   },
   "dependencies": {
     "imask": "^7.6.1"

@@ -1,4 +1,4 @@
-// import IMask from 'imask';
+import IMask from 'imask';
 
 export function applyPhoneMask(inputElement) {
     const maskOptions = {
