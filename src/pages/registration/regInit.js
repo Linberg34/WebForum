@@ -1,7 +1,7 @@
 import { applyPhoneMask } from '../../shared/validations/applyPhoneMask.js';
 import { validateRegistration } from './validateRegistration.js';
 import { authService } from '../../storage/api/services/authService.js';
-import { onNavigate } from '../../app/router/router.js';
+import { navigate, onNavigate } from '../../app/router/router.js';
 
 export function initRegistration() {
     const phoneInput = document.getElementById('phone');
@@ -19,6 +19,10 @@ export function initRegistration() {
             phoneNumber: document.getElementById('phone').value.trim()
         };
 
+        formData.birthDate = formData.birthDate || null; 
+        formData.phoneNumber = formData.phoneNumber.trim() === "+7 (___) ___-__-__" ? null : formData.phoneNumber || null;
+        
+
         const errors = validateRegistration(
             formData.fullName,
             formData.password, 
@@ -28,12 +32,13 @@ export function initRegistration() {
         );
 
         try {
+            console.log(formData);
             const data = await authService.register(formData);
 
             sessionStorage.setItem("authToken", data.token);
 
-            alert(`Регистрация успешна!`);
-            onNavigate('/profile');
+            console.log("perehod na profile");
+            navigate('/profile');
         } catch (error) {
             console.error('Ошибка:', error);
             alert(error.message);

@@ -3,7 +3,11 @@ export function initDropDown() {
     const dropdownMenu = document.getElementById('dropdownMenu');
     const profileButton = document.getElementById('profileButton');
     const logoutButton = document.getElementById('logoutButton');
+    const email = userButton.textContent.split(' ')[0]; 
 
+
+
+    
     userButton.addEventListener('click', () => {
         dropdownMenu.classList.toggle('hidden');
     });

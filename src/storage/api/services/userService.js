@@ -19,7 +19,7 @@ export const userService = {
                 "Content-Type": "application/json", 
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
             },
-            body: JSON.stringify(editProfileData),
+            body: editProfileData,
         });
     },
 };

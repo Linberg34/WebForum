@@ -1,8 +1,11 @@
 import { initDropDown } from './dropDown.js';
 import { insertData } from './insertData.js';
+import { userService } from '../../storage/api/services/userService.js';
 
 export async function initProfilePage() {
     const token = sessionStorage.getItem('authToken');
+    const createPostButton = document.querySelector('.createPostButton');
+    
 
     if (!token) {
         alert('Вы не авторизованы. Переход на страницу входа.');
@@ -10,6 +13,11 @@ export async function initProfilePage() {
         return;
     }
 
+
+    if (token) {
+        createPostButton.classList.remove('hidden');
+    }
+    
     initDropDown();
     await insertData();
 
@@ -20,13 +28,13 @@ export async function initProfilePage() {
         const updatedProfile = {
             email: document.getElementById('email').value.trim(),
             fullName: document.getElementById('fullName').value.trim(),
-            phoneNumber: document.getElementById('phone').value.trim(),
+            birthDate: document.getElementById('birthDate').value || null,
             gender: document.getElementById('gender').value,
-            birthDate: document.getElementById('birthDate').value,
+            phoneNumber: document.getElementById('phone').value.trim() || null
         };
 
         try {
-            await authService.updateProfile(updatedProfile);
+            await userService.editProfile(updatedProfile);
             alert('Профиль успешно обновлен.');
         } catch (error) {
             console.error('Ошибка обновления профиля:', error);

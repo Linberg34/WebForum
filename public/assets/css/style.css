@@ -301,15 +301,24 @@ a.mainPage:hover {
     font-weight: bold;
 }
 
-.profileForm input,
-.profileForm select {
-    width: 100%;
+.profileForm input {
+    width: 95%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
 }
+
+.profileForm select{
+    width: 98%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
 .saveButtonContainer{
     text-align: right;
 }
@@ -330,12 +339,12 @@ a.mainPage:hover {
 
 .createPostButton {
     text-decoration: none;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
+    color: #333;
+    transition: color 0.3s;
+}
+.createPostButton:hover {
+    color: #383838;
     font-weight: bold;
-    display: inline-block;
 }
 
 .createPostButton.hidden {

@@ -11,6 +11,12 @@ export function onNavigate(container) {
             container ? container.innerHTML = page : document.getElementById('app').innerHTML = page;
         }).then(config.fn);
 }
+
+export function navigate(path) {    
+    window.history.pushState(null, '', path);
+    onNavigate();
+}
+
 export function setupRouting(root) {
     window.addEventListener('popstate', () => onNavigate(root));
     document.addEventListener('click', event => {

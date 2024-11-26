@@ -1,7 +1,7 @@
 import { httpClient } from "./httpsClient";
 export const authService = {
     async login(email, password) {
-        return await httpClient("/account/login", { 
+        return  httpClient("/account/login", { 
             method: "POST", 
             body: { email, password } 
         });
@@ -18,7 +18,7 @@ export const authService = {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
-            },
+            }
         });
     }
 };
