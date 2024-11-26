@@ -15,7 +15,10 @@ export const authService = {
 
     async logout() {
         return httpClient("/account/logout", {
-            method: "POST"
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
+            },
         });
     }
 };

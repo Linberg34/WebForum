@@ -2,7 +2,7 @@ import { checkData } from "./checkData";
 import { authService } from "../../storage/api/services/authService.js";
 import { onNavigate } from "../../app/router/router.js";
 
-export function initAuth() {
+export async function initAuth() {
     const loginForm = document.getElementById('loginForm');
     const registerButton = document.getElementById('registerButton');
     const errorsContainer = document.getElementById('errors');
