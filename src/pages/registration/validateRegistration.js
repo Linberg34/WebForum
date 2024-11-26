@@ -7,6 +7,7 @@ import {
 } from '../../shared/validations/index.js';
 
 export function validateRegistration(fullName, password, email, birthDate, phoneNumber) {
+    
     const errors = [
         validateFullName(fullName),
         validateEmail(email),

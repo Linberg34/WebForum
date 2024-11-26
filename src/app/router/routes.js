@@ -1,12 +1,25 @@
-const parcerRoot = "./__parcel_source_root";
+import { initAuth } from "../../pages/auth/authInit";
+import { initRegistration } from "../../pages/registration/regInit";
+
+export const parcerRoot = "./__parcel_source_root";
 
 function createPath(path) { return `${parcerRoot}/${path}` };
 
-export const routes = {
-    '/login': { page: createPath(`src/pages/auth/index.html`)},
-    '/registration': { page: createPath('src/pages/registration/index.html')}
-};
 
+const routes = {
+    '/login': { 
+        fn: (container) => initAuth(container), 
+        sourcePath: "/src/pages/auth/index.html"
+    },
+    '/registration':{
+        fn: (container) => initRegistration(container), 
+        sourcePath: "/src/pages/registration/index.html"
+    }
+    // ,
+    // '/profile':{
+    //     fn:(container)
+    // }
+};
 
 export function getRouteConfig(path) {
     return routes[path] || routes['/'];

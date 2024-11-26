@@ -6,41 +6,123 @@ body {
 
 
 /* Header */
-.header{
+.header {
     padding: 10px 30px;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header nav div{
-    list-style: none;
+.header nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.navList {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
+    justify-content: space-between;
     width: 100%;
 }
 
-.header nav div  a {
+.navList .leftSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navList .rightSection {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+.blogTitle {
+    font-weight: 500;
+}
+
+a.mainPage {
     text-decoration: none;
     color: #333;
     transition: color 0.3s;
 }
-.header nav div a:hover{
-    color:#383838;
+
+a.mainPage:hover {
+    color: #383838;
+    font-weight: bold;
+}
+.loginButton{
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+.loginButton:hover{
+    color: #383838;
     font-weight: bold;
 }
 
-.blogTitle{
-    font-weight: 500;
-}
+    /* DropDown menu */
+    .dropdown {
+        position: relative;
+    }
 
+    .dropdownButton {
+        background: none;
+        border: 0px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-.loginButton{
-    margin-left: auto;
-    font-weight: normal;
-}
+    .dropdownMenu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        z-index: 100;
+        min-width: 150px;
+    }
 
+    .dropdownMenu li {
+        padding: 10px;
+        text-align: left;
+    }
+
+    .dropdownMenu li button {
+        background: none;
+        border: none;
+        padding: 0;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .dropdownMenu li button:hover {
+        background-color: #f4f4f4;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .dropdownMenu.show {
+        display: block;
+    }
 
 
 /* Footer */
@@ -62,7 +144,6 @@ body {
 /* Auth Form */
 
 .authFormContainer{
-    margin-top: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,7 +209,6 @@ body {
 /* Reg Form */
 
 .registrationFormContainer {
-    margin-top: 5%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -202,4 +282,61 @@ body {
 
 .registrationFormContainer .btnReg:hover {
     background-color: #0056b3;
+}
+
+/* Profile form */
+.profileFormContainer {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profileForm label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.profileForm input,
+.profileForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.saveButtonContainer{
+    text-align: right;
+}
+
+.saveButton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.saveButton:hover {
+    background-color: #0056b3;
+}
+
+.createPostButton {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.createPostButton.hidden {
+    display: none;
 }

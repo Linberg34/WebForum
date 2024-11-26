@@ -1,9 +1,9 @@
 import { applyPhoneMask } from '../../shared/validations/applyPhoneMask.js';
 import { validateRegistration } from './validateRegistration.js';
-import { sendRegistrationRequest } from './sendRegRequest.js';
+import { authService } from '../../storage/api/services/authService.js';
+import { onNavigate } from '../../app/router/router.js';
 
 export function initRegistration() {
-
     const phoneInput = document.getElementById('phone');
     applyPhoneMask(phoneInput);
 
@@ -19,15 +19,21 @@ export function initRegistration() {
             phoneNumber: document.getElementById('phone').value.trim()
         };
 
-        const errors = validateRegistration(formData);
-        if (errors.length > 0) {
-            alert(errors.join('\n'));
-            return;
-        }
+        const errors = validateRegistration(
+            formData.fullName,
+            formData.password, 
+            formData.email,
+            formData.birthDate,
+            formData.phoneNumber
+        );
 
         try {
-            const data = await sendRegistrationRequest(formData);
-            alert(`Регистрация успешна! Ваш TOKEN: ${data.token}`);
+            const data = await authService.register(formData);
+
+            sessionStorage.setItem("authToken", data.token);
+
+            alert(`Регистрация успешна!`);
+            onNavigate('/profile');
         } catch (error) {
             console.error('Ошибка:', error);
             alert(error.message);
