@@ -1,6 +1,6 @@
 import { initDropDown } from './dropDown.js';
 import { insertData } from './insertData.js';
-import { userService } from '../../storage/api/services/userService.js';
+import { userServices } from '../../storage/api/services/userServices.js';
 
 export async function initProfilePage() {
     const token = sessionStorage.getItem('authToken');
@@ -34,7 +34,7 @@ export async function initProfilePage() {
         };
 
         try {
-            await userService.editProfile(updatedProfile);
+            await userServices.editProfile(updatedProfile);
             alert('Профиль успешно обновлен.');
         } catch (error) {
             console.error('Ошибка обновления профиля:', error);

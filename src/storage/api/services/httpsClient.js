@@ -17,7 +17,7 @@ export async function httpClient(endpoint, { method = "GET", body, headers = {} 
     if (!response.ok) {
         let errorDetails;
         try {
-            errorDetails = await response.json(); // Попытка парсинга тела ошибки
+            errorDetails = await response.json();
         } catch {
             errorDetails = { message: `Ошибка: ${response.statusText}` };
         }
@@ -25,14 +25,13 @@ export async function httpClient(endpoint, { method = "GET", body, headers = {} 
         throw new Error(errorDetails.message || "Неизвестная ошибка");
     }
 
-    // Обработка пустого тела ответа (например, для 204 No Content)
     if (response.status === 204 || response.headers.get("Content-Length") === "0") {
         return null;
     }
 
     try {
-        return await response.json(); // Попытка вернуть JSON
+        return await response.json(); 
     } catch {
-        return null; // Если тело ответа пустое или не JSON, возвращаем null
+        return null; 
     }
 }

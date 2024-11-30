@@ -1,0 +1,88 @@
+
+<header class="header">
+    <nav>
+        <div class="navList">
+            <div class="leftSection">
+                <span class="blogTitle">Блог №415</span>
+                <a href="/" class="mainPage">Главная</a>
+                <a href="/authors" class="mainPage">Авторы</a>
+                <a href="/communities" class="mainPage">Группы</a>
+            </div>
+            <div class="rightSection">
+                <div class="dropdown">
+                    <button id="userButton" class="dropdownButton">
+                        ... ▼
+                    </button>
+                    <ul id="dropdownMenu" class="dropdownMenu hidden">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<div class="pageWrapper">
+    <div class="mainContainer">
+        <div class="createPostButtonContainer">
+            <button class="createPostButton hidden">Написать пост</button>
+        </div>
+        <div class="filtersPostsPaginationWrapper">
+            <div class="filtersContainer">
+                <div class="filterNaming">Фильтры</div>
+                <div class="filterLogicContainer">
+                    <div class="searchLogicContainer">
+                        <div class="authorSearchContainer">
+                            <label for="authorSearchInput">Поиск по имени автора</label>
+                            <input type="text" id="authorSearchInput" placeholder="Введите имя автора">
+                        </div>
+                        <div class="tagSearchContainer">
+                            <label for="tagFilter">Поиск по тэгам</label>
+                            <select id="tagFilter" multiple>
+                                <option value="tag1"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="searchLogicContainer2">
+                        <div class="filterColumn">
+                            <label for="sortOrder">Сортировать</label>
+                            <select id="sortOrder">
+                                <option value="CreateDesc">По дате создания (сначала новые)</option>
+                                <option value="CreateAsc">По дате создания (сначала старые)</option>
+                                <option value="LikeDesc">По количеству лайков (по убыванию)</option>
+                                <option value="LikeAsc">По количеству лайков (по возрастанию)</option>
+                            </select>
+                        </div>
+                        <div class="filterColumn">
+                            <label for="readTimeFrom">Время чтения от</label>
+                            <input type="number" id="readTimeFrom" min="0" step="1">
+                        </div>
+                        <div class="filterColumn">
+                            <label for="readTimeTo">Время чтения до</label>
+                            <input type="number" id="readTimeTo" min="0" step="1">
+                        </div>
+                        <div class="checkboxContainer">
+                            <label>
+                                <input type="checkbox" id="onlyMyGroups">
+                                Только мои группы
+                            </label>
+                        </div>
+                        <div class="buttonContainer">
+                            <button id="applyFiltersButton">Применить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="postsContainer"></div>
+                <label for="pageSizeSelect">Размер страницы:</label>
+                <input id="pageSizeSelect" type=number min="1" value="5"></option>
+            <div id="paginationContainer" class="pagination">
+            </div>
+        </div>
+    </div>
+    <footer class="footerBig">
+        <p>© 2024 - Блог №415</p>
+    </footer>
+</div>
+

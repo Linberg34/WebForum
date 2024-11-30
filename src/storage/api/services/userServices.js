@@ -1,8 +1,6 @@
 import { httpClient } from "./httpsClient";
 
-import { httpClient } from "./httpsClient";
-
-export const userService = {
+export const userServices = {
     async getProfile() {
         return httpClient("/account/profile", {
             method: "GET",

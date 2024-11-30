@@ -1,5 +1,5 @@
 import { httpClient } from "./httpsClient";
-export const authService = {
+export const authServices = {
     async login(email, password) {
         return  httpClient("/account/login", { 
             method: "POST", 

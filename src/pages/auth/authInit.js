@@ -1,5 +1,5 @@
 import { checkData } from "./checkData";
-import { authService } from "../../storage/api/services/authService.js";
+import { authServices } from "../../storage/api/services/authServices.js";
 import { navigate, onNavigate } from "../../app/router/router.js";
 
 export async function initAuth() {
@@ -19,11 +19,11 @@ export async function initAuth() {
         }
 
         try {
-            const data = await authService.login(email, password );
-            console.log('Request payload:',email, password );
+            const data = await authServices.login(email, password );
+            
 
             sessionStorage.setItem("authToken", data.token);
-            // alert("Вы успешно авторизовались!");
+            
             navigate('/profile'); 
         } catch (error) {
             console.error("Ошибка при авторизации:", error);

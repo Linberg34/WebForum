@@ -1,5 +1,5 @@
 import { applyPhoneMask } from '../../shared/validations/applyPhoneMask.js';
-import { userService } from '../../storage/api/services/userService.js';
+import { userServices } from '../../storage/api/services/userServices.js';
 
 export async function insertData() {
     const emailField = document.getElementById('email');
@@ -10,7 +10,7 @@ export async function insertData() {
     const userButton = document.getElementById('userButton'); 
 
     try {
-        const userProfile = await userService.getProfile();
+        const userProfile = await userServices.getProfile();
 
         const email = userProfile.email || "Неизвестный пользователь";
         userButton.textContent = `${email} ▼`;

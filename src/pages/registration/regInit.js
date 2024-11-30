@@ -1,6 +1,6 @@
 import { applyPhoneMask } from '../../shared/validations/applyPhoneMask.js';
 import { validateRegistration } from './validateRegistration.js';
-import { authService } from '../../storage/api/services/authService.js';
+import { authServices } from '../../storage/api/services/authServices.js';
 import { navigate, onNavigate } from '../../app/router/router.js';
 
 export function initRegistration() {
@@ -33,7 +33,7 @@ export function initRegistration() {
 
         try {
             console.log(formData);
-            const data = await authService.register(formData);
+            const data = await authServices.register(formData);
 
             sessionStorage.setItem("authToken", data.token);
 
