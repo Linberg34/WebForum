@@ -2,21 +2,34 @@ import { httpClient } from "./httpsClient";
 
 export const postsServices = {
     async getPosts(params) {
-        const queryParams = new URLSearchParams(params).toString();
-        return httpClient(`/post?${queryParams}`, {
+        const queryParams = new URLSearchParams();
+    
+        for (const key in params) {
+            const value = params[key];
+            if (Array.isArray(value)) {
+                value.forEach(v => queryParams.append(key, v));
+            } else if (typeof value === 'boolean') {
+                queryParams.append(key, value.toString());
+            } else if (value !== undefined && value !== null) {
+                queryParams.append(key, value);
+            }
+        }
+    
+        return httpClient(`/post?${queryParams.toString()}`, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
+                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
             },
         });
     },
+    
+    
 
     async createPost(postData) {
         return httpClient("/posts", {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
-                "Content-Type": "application/json", 
             },
             body: JSON.stringify(postData),
         });
@@ -31,21 +44,14 @@ export const postsServices = {
         });
     },
 
-    async likePost(postId) {
-        return httpClient(`/posts/${postId}/like`, {
-            method: "POST",
+    async toggleLike(postId, hasLike) {
+        const method = hasLike ? "DELETE" : "POST";
+        return httpClient(`/post/${postId}/like`, {
+            method,
             headers: {
-                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
+                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
             },
         });
-    },
-
-    async removeLike(postId) {
-        return httpClient(`/posts/${postId}/like`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
-            },
-        });
-    },
+    }
+    
 };

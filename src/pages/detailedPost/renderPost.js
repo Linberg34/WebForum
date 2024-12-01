@@ -1,11 +1,13 @@
 import { postsServices } from "../../storage/api/services/postsServices.js";
 
-export function renderPosts(posts) {
-    const postsContainer = document.getElementById("postsContainer");
-    postsContainer.innerHTML = "";
+export async function renderPost(postId) {
+    const postContainer = document.getElementById("detailedPostContainer");
+    postContainer.innerHTML = "";
     const userToken = sessionStorage.getItem("authToken");
-    
-    posts.forEach((post) => {
+
+    try {
+        const post = await postsServices.getPostById(postId); 
+
         const postCard = document.createElement("div");
         postCard.className = "postCard";
 
@@ -24,11 +26,9 @@ export function renderPosts(posts) {
         );
         authorInfo.appendChild(authorText);
 
-        const postTitle = document.createElement("a");
+        const postTitle = document.createElement("h1");
         postTitle.className = "postTitle";
-        postTitle.href = `/post/${post.id}`;
         postTitle.textContent = post.title || "Без названия";
-
 
         postHeader.appendChild(authorInfo);
         postHeader.appendChild(postTitle);
@@ -47,32 +47,11 @@ export function renderPosts(posts) {
             postBody.appendChild(postImage);
         }
 
-        const postDescription = document.createElement("p");
-        postDescription.className = "postDescription";
+        const postContent = document.createElement("p");
+        postContent.className = "postContent";
+        postContent.textContent = post.content || "Описание отсутствует";
 
-        const isLongText = post.description && post.description.length > 200;
-        postDescription.textContent = isLongText
-            ? `${post.description.substring(0, 200)}...`
-            : post.description || "Описание отсутствует";
-
-        const descriptionContainer = document.createElement("div");
-        descriptionContainer.className = "descriptionContainer";
-        descriptionContainer.appendChild(postDescription);
-
-        if (isLongText) {
-            const showMoreButton = document.createElement("button");
-            showMoreButton.className = "showMoreButton";
-            showMoreButton.textContent = "Читать полностью";
-
-            showMoreButton.addEventListener("click", () => {
-                postDescription.textContent = post.description;
-                showMoreButton.remove();
-            });
-
-            descriptionContainer.appendChild(showMoreButton);
-        }
-
-        postBody.appendChild(descriptionContainer);
+        postBody.appendChild(postContent);
 
         const postTags = document.createElement("div");
         postTags.className = "postTags";
@@ -103,7 +82,7 @@ export function renderPosts(posts) {
         commentsButton.href = `/post/${post.id}#comments`;
 
         const commentIcon = document.createElement("i");
-        commentIcon.className = "fa fa-comment"; 
+        commentIcon.className = "fa fa-comment";
 
         const commentCount = document.createElement("span");
         commentCount.textContent = ` ${post.commentsCount || 0}`;
@@ -118,19 +97,19 @@ export function renderPosts(posts) {
         likeButton.className = "likeButton";
         likeButton.textContent = post.hasLike ? "❤️" : "🤍";
         likeButton.disabled = !userToken;
-        
+
         const likeCount = document.createElement("span");
         likeCount.className = "likeCount";
         likeCount.textContent = post.likes || 0;
-        
+
         if (userToken) {
             likeButton.addEventListener("click", async () => {
                 try {
                     const updatedPost = await postsServices.toggleLike(post.id, post.hasLike);
-        
+
                     post.hasLike = !post.hasLike;
                     post.likes = post.hasLike ? post.likes + 1 : post.likes - 1;
-        
+
                     likeButton.textContent = post.hasLike ? "❤️" : "🤍";
                     likeCount.textContent = post.likes;
                 } catch (error) {
@@ -139,7 +118,6 @@ export function renderPosts(posts) {
                 }
             });
         }
-        
 
         likeContainer.appendChild(likeButton);
         likeContainer.appendChild(likeCount);
@@ -152,6 +130,9 @@ export function renderPosts(posts) {
         postCard.appendChild(postBody);
         postCard.appendChild(postFooter);
 
-        postsContainer.appendChild(postCard);
-    });
+        postContainer.appendChild(postCard);
+    } catch (error) {
+        console.error("Ошибка загрузки поста:", error);
+        postContainer.innerHTML = "<p>Ошибка загрузки поста. Попробуйте позже.</p>";
+    }
 }

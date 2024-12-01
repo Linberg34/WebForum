@@ -2,7 +2,9 @@ import { initAuth } from "../../pages/auth/authInit";
 import { initCommunitiesPage } from "../../pages/communities/communitiesPage";
 import { initMainPage } from "../../pages/main/mainPage";
 import { initProfilePage } from "../../pages/profile/profile";
+import { initDetailedPost } from "../../pages/detailedPost/detailedPost";
 import { initRegistration } from "../../pages/registration/regInit";
+import { matchRoute } from "./router.js";
 
 export const parcerRoot = "./__parcel_source_root";
 
@@ -30,9 +32,23 @@ const routes = {
     '/communities':{
         fn:(container) => initCommunitiesPage(container),
         sourcePath:"/src/pages/communities/index.html"
+    },
+    'community/:id':{
+        fn:(container,params) => initCommunityPage(container,params),
+        sourcePath:"/src/pages/communities/concreteCommunity/index.html"
+    },
+    'post/:id':{
+        fn:(container,params) => initDetailedPost(container,params),
+        sourcePath:"/src/pages/detailedPost/index.html"
     }
 };
 
 export function getRouteConfig(path) {
-    return routes[path] || routes['/'];
+    for (const [routePath, route] of Object.entries(routes)) {
+        const params = matchRoute(routePath, path);
+        if (params) {
+            return { ...route, params };
+        }
+    }
+    return routes['/'] || null;
 }

@@ -4,13 +4,27 @@ import {parcerRoot} from './routes.js';
 
 export function onNavigate(container) {
     const path = window.location.pathname;
-    const config =getRouteConfig(path);
-    if(!config) console.log(`Маршрут для пути "${path}" не найден.`);
-    else fetch(`${parcerRoot}${config.sourcePath}`)
-        .then(r => r.text()).then(page => {
-            container ? container.innerHTML = page : document.getElementById('app').innerHTML = page;
-        }).then(config.fn);
+    const config = getRouteConfig(path);
+
+    if (!config) {
+        console.log(`Маршрут для пути "${path}" не найден.`);
+        return;
+    }
+
+    fetch(`${parcerRoot}${config.sourcePath}`)
+        .then(r => r.text())
+        .then(page => {
+            (container || document.getElementById('app')).innerHTML = page;
+        })
+        .then(() => {
+            if (config.params) {
+                config.fn(container, config.params);
+            } else {
+                config.fn(container);
+            }
+        });
 }
+
 
 export function navigate(path) {    
     window.history.pushState(null, '', path);
@@ -23,11 +37,35 @@ export function setupRouting(root) {
         const target = event.target.closest('a');
         if (target && target.href.startsWith(window.location.origin)) {
             event.preventDefault();
-            window.history.pushState(null, '', target.pathname);
-            onNavigate(root);
+            navigate(target.pathname);
         }
     });
 
 
     onNavigate(root);
+}
+
+export function matchRoute(routePath, currentPath) {
+    const routeSegments = routePath.split('/').filter(Boolean);
+    const currentSegments = currentPath.split('/').filter(Boolean);
+
+    if (routeSegments.length !== currentSegments.length) {
+        return null;
+    }
+
+    const params = {};
+
+    for (let i = 0; i < routeSegments.length; i++) {
+        const routeSegment = routeSegments[i];
+        const currentSegment = currentSegments[i];
+
+        if (routeSegment.startsWith(':')) {
+            const paramName = routeSegment.slice(1);
+            params[paramName] = currentSegment;
+        } else if (routeSegment !== currentSegment) {
+            return null;
+        }
+    }
+
+    return params;
 }

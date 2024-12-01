@@ -3,7 +3,7 @@ export async function getFilters() {
 
     const authorInput = document.getElementById('authorSearchInput');
     if (authorInput && authorInput.value.trim()) {
-        filters.authorName = authorInput.value.trim();
+        filters.author = authorInput.value.trim();
     }
 
     const tagFilter = document.getElementById('tagFilter');
@@ -21,12 +21,12 @@ export async function getFilters() {
 
     const readTimeFrom = document.getElementById('readTimeFrom');
     if (readTimeFrom && readTimeFrom.value) {
-        filters.readingTimeFrom = Number(readTimeFrom.value);
+        filters.min = Number(readTimeFrom.value);
     }
 
     const readTimeTo = document.getElementById('readTimeTo');
     if (readTimeTo && readTimeTo.value) {
-        filters.readingTimeTo = Number(readTimeTo.value);
+        filters.max = Number(readTimeTo.value);
     }
 
     const onlyMyGroups = document.getElementById('onlyMyGroups');
@@ -34,7 +34,5 @@ export async function getFilters() {
         filters.onlyMyCommunities = onlyMyGroups.checked;
     }
 
-
-    console.log(filters);
     return filters;
 }

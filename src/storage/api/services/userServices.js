@@ -13,8 +13,7 @@ export const userServices = {
     async editProfile(editProfileData) {
         return httpClient("/account/profile", {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json", 
+            headers: { 
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
             },
             body: editProfileData,

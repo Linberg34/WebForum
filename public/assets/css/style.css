@@ -142,6 +142,7 @@ a.mainPage:hover {
 }
 
 .footerBig{
+    margin-top: auto;
     position:relative;
     bottom: 0;
     left:0;
@@ -352,20 +353,6 @@ a.mainPage:hover {
     background-color: #0056b3;
 }
 
-.createPostButton {
-    text-decoration: none;
-    color: #333;
-    transition: color 0.3s;
-}
-.createPostButton:hover {
-    color: #383838;
-    font-weight: bold;
-}
-
-.createPostButton.hidden {
-    display: none;
-}
-
 
 /* Main Page */
 
@@ -376,11 +363,32 @@ a.mainPage:hover {
 }
 
 .createPostButtonContainer{
-    width: 50%;
-    justify-content: right;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
-    
+    justify-content: flex-end;
+    padding-right: 5px;
 }
+
+.createPostButton {   
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.createPostButton:hover {
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.createPostButton.hidden {
+    display: none;
+}
+
 
 .mainContainer{
     margin: auto;
@@ -594,8 +602,6 @@ a.mainPage:hover {
     margin-top: 10px;
 }
 
-
-
 .postCard {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -605,8 +611,18 @@ a.mainPage:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.postImage {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+
 .postHeader {
     margin-bottom: 10px;
+}
+.postHeader a{
+    text-decoration: none;
 }
 
 .authorInfo {
@@ -628,6 +644,7 @@ a.mainPage:hover {
 }
 
 .postDescription {
+    word-wrap: break-word;
     font-size: 14px;
     color: #555;
     margin-bottom: 10px;
@@ -652,15 +669,21 @@ a.mainPage:hover {
 }
 
 .commentsButton {
-    font-size: 14px;
-    color: #007bff;
-    text-decoration: none;
     display: flex;
     align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-.commentsButton i {
-    margin-right: 5px;
+.commentsButton:hover {
+    color: #007bff;
+}
+
+.fa-comment {
+    font-size: 16px;
 }
 
 .likeContainer {
@@ -677,13 +700,19 @@ a.mainPage:hover {
 .likeButton {
     background: none;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
+
 
 .likeButton:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.likeButton:hover {
+    transform: scale(1.2);
 }
 
 .descriptionContainer {
@@ -739,7 +768,6 @@ a.mainPage:hover {
     margin-right: 15px;
 }
 
-
 .subscribeButton {
     padding: 8px 12px;
     border: none;
@@ -754,6 +782,20 @@ a.mainPage:hover {
     background-color: #0056b3;
 }
 
+.unsubscribeButton {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.unsubscribeButton:hover {
+    background-color: #b02a37;
+}
+
 .closedButton {
     padding: 8px 12px;
     border: none;
@@ -761,4 +803,99 @@ a.mainPage:hover {
     background-color: #ddd;
     color: #888;
     cursor: not-allowed;
+}
+
+.disabledButton {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ddd;
+    color: #666;
+    cursor: not-allowed;
+}
+
+
+/* Concrete Community Page*/
+.communityTitleContainer {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.headerSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.headerSection h2 {
+    margin: 0;
+    font-size: 24px;
+}
+.actionButtons button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+.writePostButton {
+    background-color: #007bff;
+}
+.unsubscribeButton {
+    background-color: #dc3545;
+}
+
+.infoSection {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+}
+.infoSection i.icon-users {
+    margin-right: 5px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.communityType {
+    font-weight: bold;
+}
+
+.adminsSection {
+    margin-top: 15px;
+}
+.adminsSection h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+.adminList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.adminCard {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.adminCard .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+.maleAvatar {
+    background-color: #007bff; 
+}
+.femaleAvatar {
+    background-color: #ff69b4; 
+}
+.adminCard span {
+    font-size: 14px;
+    color: #333;
 }

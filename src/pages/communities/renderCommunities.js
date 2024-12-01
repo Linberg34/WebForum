@@ -1,7 +1,7 @@
-import { communityServices } from "../../storage/api/services/communityService.js";
+import { communityServices } from "../../storage/api/services/communityServices.js";
 import { handleSubscriptionButton } from "./subscriptionHandler.js";
 
-export async function renderCommunities(user) {
+export async function renderCommunities() {
     const communitiesContainer = document.getElementById("communitiesContainer");
     communitiesContainer.innerHTML = ""; 
     const communities = await communityServices.getCommunityList();
@@ -24,7 +24,7 @@ export async function renderCommunities(user) {
         subscribeButton.className = community.isClosed ? "closedButton" : "subscribeButton";
         subscribeButton.textContent = community.isClosed ? "Закрыто" : "Подписаться";
 
-        handleSubscriptionButton(subscribeButton, community, user);
+        handleSubscriptionButton(subscribeButton, community);
 
         communityCard.appendChild(communityTitle);
         communityCard.appendChild(subscribeButton);
