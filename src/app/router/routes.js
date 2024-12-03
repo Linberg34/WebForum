@@ -8,7 +8,7 @@ import { initAuthorsPage } from "../../pages/authors/authorPage.js";
 import { initCreatePostPage } from "../../pages/create/createPostPage.js";
 
 
-export const parcerRoot = "./__parcel_source_root";
+export const parcerRoot = "/__parcel_source_root";
 
 function createPath(path) { return `${parcerRoot}/${path}` };
 
