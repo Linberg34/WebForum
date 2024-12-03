@@ -3,17 +3,22 @@ html,body {
     overflow-x: hidden; 
     width: 100%;
 }
-
+main{
+    min-height:calc(100vh - 48px - 70px);
+}
 
 
 /* Header */
 .header {
-    padding: 10px 30px;
+    height: 47px;
+    padding: 0 30px;
     border-bottom: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+
 
 .header nav {
     display: flex;
@@ -51,7 +56,15 @@ a.mainPage {
     color: #333;
     transition: color 0.3s;
 }
-
+a.createPostButtonhidden{
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+a.createPostButtonhidden:hover {
+    color: #383838;
+    font-weight: bold;
+}
 a.mainPage:hover {
     color: #383838;
     font-weight: bold;
@@ -129,11 +142,10 @@ a.mainPage:hover {
 /* Footer */
 
 .footer{
-    position:fixed;
-    bottom: 0;
-    left:0;
+    display: flex;
+    align-items: center;
+    height: 70px;
     width: 100%;
-    height: 4rem;
     background-color: #F8F9FA;
 }
 .footer p {
@@ -141,13 +153,14 @@ a.mainPage:hover {
     color: #8C8D99;
 }
 
+
 .footerBig{
+    height: 70px;
     margin-top: auto;
     position:relative;
     bottom: 0;
     left:0;
     width: 100%;
-    height: 4rem;
     background-color: #F8F9FA;
 }
 .footer1 p {
@@ -386,6 +399,7 @@ a.mainPage:hover {
 }
 
 .createPostButton.hidden {
+
     display: none;
 }
 
@@ -834,6 +848,8 @@ a.mainPage:hover {
     margin: 0;
     font-size: 24px;
 }
+
+
 .actionButtons button {
     padding: 10px 20px;
     margin-left: 10px;
@@ -995,3 +1011,64 @@ a.mainPage:hover {
     color: white;
 }
 
+/* Create Post page*/
+.createPostContainer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.createPostContainer .createForm {
+    width: 50%;
+    padding: 15px;
+    box-sizing: border-box;
+    background: #FFF;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.createPostContainer h1 {
+    margin-bottom: 20px;
+}
+
+.createPostContainer label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    text-align: left;
+    display: block;
+}
+
+.createPostContainer input,
+.createPostContainer select,
+.createPostContainer textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.createPostContainer textarea {
+    resize: none;
+    height: 100px;
+}
+
+.createPostContainer .btnSubmit {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.createPostContainer .btnSubmit:hover {
+    background-color: #0056b3;
+}

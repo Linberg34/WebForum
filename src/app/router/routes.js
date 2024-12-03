@@ -5,7 +5,8 @@ import { initProfilePage } from "../../pages/profile/profile";
 import { initDetailedPost } from "../../pages/detailedPost/detailedPost";
 import { initRegistration } from "../../pages/registration/regInit";
 import { initAuthorsPage } from "../../pages/authors/authorPage.js";
-import { matchRoute } from "./router.js";
+import { initCreatePostPage } from "../../pages/create/createPostPage.js";
+
 
 export const parcerRoot = "./__parcel_source_root";
 
@@ -39,23 +40,53 @@ const routes = {
         fn:(container) => initAuthorsPage(container),
         sourcePath:"/src/pages/authors/index.html"
     },
-    'community/:id':{
+    '/post/create':{
+        fn:(container) => initCreatePostPage(container),
+        sourcePath:"/src/pages/create/index.html"
+    },
+    '/post/:id': {
+        fn: (container, params) =>  initDetailedPost(container, params.id),
+        sourcePath: "/src/pages/detailedPost/index.html",
+    },
+    '/community/:id':{
         fn:(container,params) => initCommunityPage(container,params.id),
         sourcePath:"/src/pages/communities/concreteCommunity/index.html"
-    },
-    'post/:id': {
-    fn: (container, params) =>  initDetailedPost(container, params.id),
-    sourcePath: "/src/pages/detailedPost/index.html",
-}
+    }
 
 };
 
 export function getRouteConfig(path) {
     for (const [routePath, route] of Object.entries(routes)) {
         const params = matchRoute(routePath, path);
+        
         if (params) {
             return { ...route, params };
         }
     }
     return routes['/'] || null;
+}
+
+function matchRoute(routePath, currentPath) {
+    const routeSegments = routePath.split('/').filter(Boolean);
+    const currentSegments = currentPath.split('/').filter(Boolean);
+
+    if (routeSegments.length !== currentSegments.length) {
+        return null;
+    }
+
+    const params = {};
+
+    for (let i = 0; i < routeSegments.length; i++) {
+        const routeSegment = routeSegments[i];
+        const currentSegment = currentSegments[i];
+
+        if (routeSegment.startsWith(':')) {
+            const paramName = routeSegment.slice(1);
+            params[paramName] = currentSegment;
+        } else if (routeSegment !== currentSegment) {
+            return null;
+        }
+    }
+
+    return params;
 }

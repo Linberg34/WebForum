@@ -1,4 +1,3 @@
-
 export function showCreatePostButton() {
     const createPostButton = document.querySelector('.createPostButton');
     const userToken = sessionStorage.getItem("authToken");
@@ -10,6 +9,10 @@ export function showCreatePostButton() {
 
     if (userToken) {
         createPostButton.classList.remove('hidden'); 
+
+        createPostButton.addEventListener("click", () => {
+            window.location.href = "/post/create";
+        });
     } else {
         createPostButton.classList.add('hidden'); 
     }

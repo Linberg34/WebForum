@@ -1,0 +1,66 @@
+<header class="header">
+    <nav>
+        <div class="navList">
+            <div class="leftSection">
+                <span class="blogTitle">Блог №415</span>
+                <a href="/" class="mainPage">Главная</a>
+                <a href="/authors" class="mainPage">Авторы</a>
+                <a href="/communities" class="mainPage">Группы</a>
+            </div>
+            <div class="rightSection">
+                <div class="dropdown">
+                    <button id="userButton" class="dropdownButton">
+                        ... ▼
+                    </button>
+                    <ul id="dropdownMenu" class="dropdownMenu hidden">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="pageWrapper">
+    <div id="mainContainer">
+        <div class="createPostContainer" id="createPostContainer">
+            <div class="createForm">
+                <h2>Написать новый пост</h2>
+                <form id="createPostForm">
+                    <label for="title">Название</label>
+                    <input type="text" id="title" name="title" placeholder="Введите название поста" required>
+        
+                    <label for="readingTime">Время чтения</label>
+                    <input type="number" id="readingTime" name="readingTime" placeholder="Введите время чтения">
+        
+                    <label for="group">Группа</label>
+                    <select id="group" name="group">
+                        <option value="none">Без группы</option>
+                    </select>
+        
+                    <label for="tags">Теги</label>
+                    <select id="tags" name="tags" multiple>
+                    </select>
+        
+                    <label for="image">Ссылка на картинку</label>
+                    <input type="text" id="image" name="image" placeholder="Введите ссылку на картинку">
+        
+                    <label for="text">Текст</label>
+                    <textarea id="text" name="text" placeholder="Введите текст поста"></textarea>
+        
+                    <label for="region">Субъект РФ</label>
+                    <select id="region" name="region">
+                    </select>
+        
+                    <button type="submit" class="btnSubmit">Создать пост</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+    
+<footer class="footer">
+    <p>© 2024 - Блог №415</p>
+</footer>
+
+

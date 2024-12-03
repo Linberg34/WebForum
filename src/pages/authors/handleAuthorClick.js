@@ -1,10 +1,9 @@
 export function handleAuthorClick(authorName) {
-    // Формируем URL с параметром автора
     const baseURL = "/";
-    const queryParams = new URLSearchParams({
-        author: authorName,
-    });
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set('author', authorName);
 
-    // Перенаправляем на главную страницу с параметром
-    window.location.href = `${baseURL}?${queryParams.toString()}`;
+    window.history.pushState(null, "", `${baseURL}?${queryParams.toString()}`);
+
+    window.dispatchEvent(new PopStateEvent('popstate'));
 }

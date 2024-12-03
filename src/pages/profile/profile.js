@@ -14,10 +14,6 @@ export async function initProfilePage() {
     }
 
 
-    if (token) {
-        createPostButton.classList.remove('hidden');
-    }
-    
     initDropDown();
     await insertData();
 
