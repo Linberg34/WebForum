@@ -5,12 +5,14 @@ import {parcerRoot} from './routes.js';
 export function onNavigate(container) {
     const path = window.location.pathname;
     const config = getRouteConfig(path);
+    
 
     if (!config) {
         console.log(`Маршрут для пути "${path}" не найден.`);
         return;
     }
 
+    
     fetch(`${parcerRoot}${config.sourcePath}`)
         .then(r => r.text())
         .then(page => {
@@ -18,11 +20,12 @@ export function onNavigate(container) {
         })
         .then(() => {
             if (config.params) {
-                config.fn(container, config.params);
+                config.fn(container || document.getElementById('app'), config.params);
             } else {
-                config.fn(container);
+                config.fn(container || document.getElementById('app'));
             }
         });
+        
 }
 
 

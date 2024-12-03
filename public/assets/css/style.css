@@ -899,3 +899,99 @@ a.mainPage:hover {
     font-size: 14px;
     color: #333;
 }
+
+/* Authors Page*/
+.authorsListContainer {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.authorCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.authorInfo {
+    display: flex;
+    align-items: center;
+    
+}
+
+.authorAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.authorDetails {
+    font-size: 14px;
+    
+}
+
+.authorStats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.statsItem {
+    margin-top: 5px;
+    padding: 5px 10px;
+    display: inline-block; 
+    background-color: #1380f4; 
+    color: #333; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    cursor: default; 
+    text-align: center;
+}
+
+.authorNameLink {
+    color: #333; 
+    text-decoration: none; 
+    cursor: pointer;
+}
+
+
+.avatarWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.authorAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.crown {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.crown::after {
+    content: "👑";
+    font-size: 16px;
+    line-height: 16px;
+    color: white;
+}
+

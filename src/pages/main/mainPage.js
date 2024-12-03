@@ -10,9 +10,8 @@ import { showCreatePostButton } from "./showCreatePostButton.js";
 
 let isInitialLoad = true; 
 
-//TODO5. Пофиксить комменты
 //TODO6. Разбить логику CSS на файлы
-
+//TODO1. Разобраться с параметрами
 
 
 export async function initMainPage() {
@@ -29,7 +28,6 @@ export async function initMainPage() {
     const page = Number(params.get("page")) || 1;
     const pageSize = Number(params.get("size")) || 5;
 
-    
 
     await fetchAndRenderPosts(page, pageSize);
 
@@ -41,9 +39,6 @@ export async function initMainPage() {
         const params = new URLSearchParams(window.location.search);
         const page = Number(params.get("page")) || 1;
         const pageSize = Number(params.get("size")) || 5;
-    
-        console.log("Popstate detected:", { path, page, pageSize });
-    
         if (routeConfig) {
             routeConfig.fn(container, { page, pageSize });
         }
@@ -54,7 +49,6 @@ export async function initMainPage() {
         const newPageSize = pageSizeSelect ? Number(pageSizeSelect.value) : 5;
 
         const filters = await getFilters();
-        console.log("Applying filters:", filters);
 
         updateURLParams(1, newPageSize, filters);
 
@@ -67,7 +61,6 @@ export async function initMainPage() {
         pageSizeSelect.addEventListener("change", async (event) => {
             const newPageSize = Number(event.target.value);
             const filters = await getFilters();
-            console.log("Page size changed:", newPageSize);
 
             updateURLParams(1, newPageSize, filters);
 

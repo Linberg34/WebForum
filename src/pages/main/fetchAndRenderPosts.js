@@ -1,4 +1,3 @@
-import { getFilters } from "./getFilterQuery";
 import { renderPosts } from "./renderPosts";
 import{renderPagination} from "./renderPagination.js";
 import { postsServices } from '../../storage/api/services/postsServices.js';

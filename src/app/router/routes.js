@@ -4,11 +4,13 @@ import { initMainPage } from "../../pages/main/mainPage";
 import { initProfilePage } from "../../pages/profile/profile";
 import { initDetailedPost } from "../../pages/detailedPost/detailedPost";
 import { initRegistration } from "../../pages/registration/regInit";
+import { initAuthorsPage } from "../../pages/authors/authorPage.js";
 import { matchRoute } from "./router.js";
 
 export const parcerRoot = "./__parcel_source_root";
 
 function createPath(path) { return `${parcerRoot}/${path}` };
+
 
 
 const routes = {
@@ -33,14 +35,19 @@ const routes = {
         fn:(container) => initCommunitiesPage(container),
         sourcePath:"/src/pages/communities/index.html"
     },
+    '/authors':{
+        fn:(container) => initAuthorsPage(container),
+        sourcePath:"/src/pages/authors/index.html"
+    },
     'community/:id':{
-        fn:(container,params) => initCommunityPage(container,params),
+        fn:(container,params) => initCommunityPage(container,params.id),
         sourcePath:"/src/pages/communities/concreteCommunity/index.html"
     },
-    'post/:id':{
-        fn:(container,params) => initDetailedPost(container,params),
-        sourcePath:"/src/pages/detailedPost/index.html"
-    }
+    'post/:id': {
+    fn: (container, params) =>  initDetailedPost(container, params.id),
+    sourcePath: "/src/pages/detailedPost/index.html",
+}
+
 };
 
 export function getRouteConfig(path) {

@@ -1,12 +1,13 @@
-import { commentServices } from "../../storage/api/services/commentServices.js";
 import { createCommentElement } from "./createCommentElement.js";
+import { postsServices } from '../../storage/api/services/postsServices.js';
 
 export async function renderComments(postId) {
     const commentsContainer = document.querySelector(".existingCommentsContainer");
     commentsContainer.innerHTML = "";
 
     try {
-        const comments = await commentServices.getCommentTree(postId);
+        const postDetails = await postsServices.getPostById(postId);
+        const comments = postDetails.comments;
 
         if (!comments || comments.length === 0) {
             commentsContainer.innerHTML = "<p>Комментариев пока нет. Оставьте первый!</p>";
