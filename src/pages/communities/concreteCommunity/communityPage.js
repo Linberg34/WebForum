@@ -4,6 +4,7 @@ import { renderPosts } from "../../main/renderPosts.js";
 
 export async function initCommunityPage(container, params) {
     const communityId = params.id;
+    
 
     try {
         const community = await communityServices.getCommunityById(communityId);

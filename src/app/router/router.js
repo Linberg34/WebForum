@@ -19,7 +19,6 @@ export function onNavigate(container) {
             (container || document.getElementById('app')).innerHTML = page;
         })
         .then(() => {
-            console.log(config);
             if (config.params) {
                 config.fn(container || document.getElementById('app'), config.params);
             } else {

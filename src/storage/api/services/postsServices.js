@@ -26,7 +26,7 @@ export const postsServices = {
     
 
     async createPost(postData) {
-        return httpClient("/posts", {
+        return httpClient("/post", {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
@@ -36,7 +36,7 @@ export const postsServices = {
     },
 
     async getPostById(postId) {
-        return httpClient(`/posts/${postId}`, {
+        return httpClient(`/post/${postId}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
