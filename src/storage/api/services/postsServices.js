@@ -29,10 +29,11 @@ export const postsServices = {
         return httpClient("/post", {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
+                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
             },
-            body: JSON.stringify(postData),
+            body: postData,
         });
+        
     },
 
     async getPostById(postId) {

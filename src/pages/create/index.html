@@ -34,7 +34,7 @@
         
                     <label for="group">Группа</label>
                     <select id="group" name="group">
-                        <option value="none">Без группы</option>
+                        <option value="none"></option>
                     </select>
         
                     <label for="tags">Теги</label>
@@ -46,11 +46,10 @@
         
                     <label for="text">Текст</label>
                     <textarea id="text" name="text" placeholder="Введите текст поста"></textarea>
-        
-                    <label for="region">Субъект РФ</label>
-                    <select id="region" name="region">
-                    </select>
-        
+                    <div class="adressContainer" id="adressContainer">
+                        <label for="regionSelect"></label>
+                        <select id="regionSelect"></select>
+                    </div>
                     <button type="submit" class="btnSubmit">Создать пост</button>
                 </form>
             </div>

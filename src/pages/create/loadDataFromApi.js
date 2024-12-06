@@ -21,6 +21,11 @@ export async function loadDataFromApi() {
         const communitySelect = document.getElementById('group');
         communitySelect.innerHTML = '';
 
+        const noCommunityOption = document.createElement('option');
+        noCommunityOption.value = ''; 
+        noCommunityOption.textContent = 'Без сообщества';
+        communitySelect.appendChild(noCommunityOption);
+
         communities.forEach(community => {
             const option = document.createElement('option');
             option.value = community.id;

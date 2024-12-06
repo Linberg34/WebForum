@@ -1,40 +1,60 @@
-import { postsServices } from "../../storage/api/services/postsServices.js";``
+import { postsServices } from "../../storage/api/services/postsServices.js";
+
 export function formPostData() {
-    document.getElementById("createPostContainer").addEventListener("submit", async (e) => {
+    document.getElementById("createPostForm").addEventListener("submit", async (e) => {
         e.preventDefault(); 
-    
-        const postData = {
+
+        const addressContainer = document.getElementById("adressContainer");
+        const { addressGuid, addressId } = collectSelectedAddress(addressContainer);
+
+        const postData = {          
             title: document.getElementById("title").value.trim(),
             description: document.getElementById("text").value.trim(), 
-            readingTime: parseInt(document.getElementById("readingTime").value.trim()) || 0, 
+            readingTime: parseInt(document.getElementById("readingTime").value.trim(), 10) || 0, 
             image: document.getElementById("image").value.trim() || null, 
-            addressId: document.getElementById("region").value || null, 
+            addressId: addressGuid || null, 
             tags: Array.from(document.getElementById("tags").selectedOptions).map(
                 (option) => option.value
-            ), 
+            )
         };
     
-        if (!postData.title || !postData.description) {
-            alert("Название и текст обязательны для заполнения.");
+        if (!postData.title || !postData.description || !postData.readingTime || !postData.tags.length) {
+            alert("Название, тег, время и текст обязательны для заполнения.");
             return;
         }
         
-        console.log("Сформированные данные:", postData);
+        console.log("Отправляемые данные:", JSON.stringify(postData, null, 2));
 
         try {
             const response = await postsServices.createPost(postData);
-    
-            if (response.ok) {
+            console.log("Ответ сервера:", response);
+            if (response) {
                 alert("Пост успешно создан!");
                 window.location.href = "/"; 
             } else {
-                const error = await response.json();
-                alert(`Ошибка создания поста: ${error.title || "Неизвестная ошибка"}`);
-                console.error("Ошибки валидации:", error.errors);
+                console.log("Неизвестный ответ сервера.");
             }
         } catch (error) {
             console.error("Ошибка при создании поста:", error);
             alert("Не удалось создать пост. Попробуйте позже.");
         }
     });
+}
+
+function collectSelectedAddress(container) {
+    const selects = container.querySelectorAll("select.address-select");
+    let lastSelectedGuid = null;
+    let lastSelectedId = null;
+
+    selects.forEach(select => {
+        if (select.value) {
+            const selectedOption = select.selectedOptions[0];
+            if (selectedOption) {
+                lastSelectedGuid = selectedOption.dataset.guid;
+                lastSelectedId = selectedOption.value;
+            }
+        }
+    });
+
+    return { addressGuid: lastSelectedGuid, addressId: lastSelectedId };
 }
