@@ -1072,3 +1072,99 @@ a.mainPage:hover {
 .createPostContainer .btnSubmit:hover {
     background-color: #0056b3;
 }
+
+/* Detailed Post Page*/
+
+.detailedPostCard {
+    width: 100%; 
+    max-width: 75%; 
+    margin: 20px auto; 
+    padding: 20px; 
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff; 
+}
+
+.commentsContainer {
+    max-width: 75%; 
+    margin: 20px auto; 
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.commentCard {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.createCommentContainer {
+    margin-top: 20px;
+}
+
+.replyButton,
+.editButton,
+.deleteButton,
+.toggleRepliesButton {
+    margin-right: 5px;
+    font-size: 0.85em;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+}
+
+.replyButton:hover,
+.editButton:hover,
+.deleteButton:hover,
+.toggleRepliesButton:hover {
+    text-decoration: underline;
+}
+
+.repliesContainer {
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+.replyTextArea {
+    width: 98%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.replySubmitButton {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.replySubmitButton:hover {
+    background-color: #0056b3;
+}
+.geoContainer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.geoContainer i {
+    margin-right: 5px;
+    color: #007bff;
+}

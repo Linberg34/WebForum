@@ -1,6 +1,5 @@
 import { commentServices } from "../../storage/api/services/commentServices.js";
-
-export function createReplyForm(parentCommentId) {
+export function createReplyForm(postId, parentCommentId, onSuccess) {
     const replyForm = document.createElement("div");
     replyForm.className = "replyForm";
 
@@ -21,18 +20,10 @@ export function createReplyForm(parentCommentId) {
         }
 
         try {
-            await commentServices.addComment(parentCommentId, content);
+            const newComment = await commentServices.addCommentToPost(postId, content, parentCommentId);
             alert("Ответ успешно добавлен.");
             replyForm.remove();
-            const commentCard = replyForm.closest('.commentCard');
-            if (commentCard) {
-                const repliesContainer = commentCard.querySelector('.repliesContainer');
-                const toggleRepliesButton = commentCard.querySelector('.toggleRepliesButton');
-                if (repliesContainer && toggleRepliesButton) {
-                    repliesContainer.innerHTML = "";
-                    toggleRepliesButton.textContent = "Показать ответы";
-                }
-            }
+            onSuccess(newComment);
         } catch (error) {
             console.error("Ошибка отправки ответа:", error);
             alert("Не удалось отправить ответ. Попробуйте позже.");

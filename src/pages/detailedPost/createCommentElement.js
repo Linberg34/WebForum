@@ -1,7 +1,7 @@
-import { createReplyForm } from "./createReplyForm.js";
 import { toggleReplies } from "./toggleReplies.js";
+import { createReplyForm } from "./createReplyForm.js";
 
-export function createCommentElement(comment) {
+export function createCommentElement(comment, postId, onReplySuccess) {
     const commentCard = document.createElement("div");
     commentCard.className = "commentCard";
 
@@ -15,45 +15,47 @@ export function createCommentElement(comment) {
 
     const meta = document.createElement("p");
     meta.className = "commentMeta";
-
     const createTime = new Date(comment.createTime).toLocaleString();
     meta.textContent = `Опубликовано: ${createTime}`;
 
-    if (comment.modifiedDate) {
-        const modifiedDate = new Date(comment.modifiedDate).toLocaleString();
-        meta.textContent += ` (изменён: ${modifiedDate})`;
-    }
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.className = "commentButtons";
 
     const replyButton = document.createElement("button");
     replyButton.className = "replyButton";
     replyButton.textContent = "Ответить";
 
     replyButton.addEventListener("click", () => {
-        const replyForm = createReplyForm(comment.id);
-        commentCard.appendChild(replyForm);
-        replyButton.disabled = true;
+        if (!commentCard.querySelector(".replyForm")) {
+            const replyForm = createReplyForm(postId, comment.id, onReplySuccess);
+            commentCard.appendChild(replyForm);
+            replyButton.disabled = true;
+        }
     });
+
+    buttonsContainer.appendChild(replyButton);
+
+    const repliesContainer = document.createElement("div");
+    repliesContainer.className = "repliesContainer";
+    repliesContainer.style.display = "none";
+
+    if (comment.subComments > 0) {
+        const toggleRepliesButton = document.createElement("button");
+        toggleRepliesButton.className = "toggleRepliesButton";
+        toggleRepliesButton.textContent = "Развернуть ответы";
+
+        toggleRepliesButton.addEventListener("click", () => {
+            toggleReplies(comment.id, repliesContainer, toggleRepliesButton, postId);
+        });
+
+        buttonsContainer.appendChild(toggleRepliesButton);
+    }
 
     commentCard.appendChild(author);
     commentCard.appendChild(content);
     commentCard.appendChild(meta);
-    commentCard.appendChild(replyButton);
-
-    if (comment.subComments > 0) {
-        const repliesContainer = document.createElement("div");
-        repliesContainer.className = "repliesContainer";
-
-        const toggleRepliesButton = document.createElement("button");
-        toggleRepliesButton.className = "toggleRepliesButton";
-        toggleRepliesButton.textContent = "Показать ответы";
-
-        toggleRepliesButton.addEventListener("click", () => {
-            toggleReplies(comment.id, repliesContainer, toggleRepliesButton);
-        });
-
-        commentCard.appendChild(toggleRepliesButton);
-        commentCard.appendChild(repliesContainer);
-    }
+    commentCard.appendChild(buttonsContainer);
+    commentCard.appendChild(repliesContainer);
 
     return commentCard;
 }

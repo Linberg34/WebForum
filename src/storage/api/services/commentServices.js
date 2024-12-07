@@ -13,10 +13,10 @@ export const commentServices = {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
             },
-            body: JSON.stringify({
+            body: {
                 content,
                 parentId,
-            }),
+            },
         });
     },
 
@@ -27,7 +27,7 @@ export const commentServices = {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${sessionStorage.getItem("authToken")}`, 
             },
-            body: JSON.stringify({ content }),
+            body: { content },
         });
     },
 

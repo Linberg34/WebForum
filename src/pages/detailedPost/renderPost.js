@@ -1,4 +1,5 @@
 import { postsServices } from "../../storage/api/services/postsServices.js";
+import { addressServices } from "../../storage/api/services/addressServices.js";
 
 export async function renderPost(postId) {
     const postContainer = document.getElementById("detailedPostContainer");
@@ -6,10 +7,10 @@ export async function renderPost(postId) {
     const userToken = sessionStorage.getItem("authToken");
 
     try {
-        const post = await postsServices.getPostById(postId); 
+        const post = await postsServices.getPostById(postId);
 
         const postCard = document.createElement("div");
-        postCard.className = "postCard";
+        postCard.className = "detailedPostCard";
 
         const postHeader = document.createElement("div");
         postHeader.className = "postHeader";
@@ -49,10 +50,10 @@ export async function renderPost(postId) {
 
         const postContent = document.createElement("p");
         postContent.className = "postContent";
-        postContent.textContent = post.content || "Описание отсутствует";
-
+        postContent.textContent = post.description || "Описание отсутствует";
         postBody.appendChild(postContent);
 
+       
         const postTags = document.createElement("div");
         postTags.className = "postTags";
 
@@ -67,15 +68,42 @@ export async function renderPost(postId) {
             postTags.textContent = "Без тегов";
         }
 
+        
         const postReadingTime = document.createElement("div");
         postReadingTime.className = "postReadingTime";
         postReadingTime.textContent = `Время чтения: ${post.readingTime || 0} мин.`;
 
         postBody.appendChild(postTags);
         postBody.appendChild(postReadingTime);
+        
+        if (post.addressId) {
+            try {
+                const geoData = await addressServices.getAddressChain(post.addressId); 
+                if (geoData && geoData.length > 0) {
+                    const geoContainer = document.createElement("div");
+                    geoContainer.className = "geoContainer";
+
+                    const geoIcon = document.createElement("i");
+                    geoIcon.className = "fa fa-map-marker-alt";
+
+                    const geoText = document.createElement("span");
+                    geoText.textContent = `  ${geoData.map(g => g.text).join(", ")}`; 
+
+                    geoContainer.appendChild(geoIcon);
+                    geoContainer.appendChild(geoText);
+
+                    postContent.appendChild(geoContainer);
+                }
+            } catch (error) {
+                console.error("Ошибка загрузки геометки:", error);
+            }
+        }
+
 
         const postFooter = document.createElement("div");
         postFooter.className = "postFooter";
+
+        
 
         const commentsButton = document.createElement("a");
         commentsButton.className = "commentsButton";
@@ -124,6 +152,8 @@ export async function renderPost(postId) {
 
         postFooter.appendChild(commentsButton);
         postFooter.appendChild(likeContainer);
+
+        
 
         postCard.appendChild(postHeader);
         postCard.appendChild(separator);

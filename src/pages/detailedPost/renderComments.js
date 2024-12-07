@@ -1,5 +1,6 @@
+import { postsServices } from "../../storage/api/services/postsServices.js";
 import { createCommentElement } from "./createCommentElement.js";
-import { postsServices } from '../../storage/api/services/postsServices.js';
+import { commentsById, indexComments } from "./commentsStore.js";
 
 export async function renderComments(postId) {
     const commentsContainer = document.querySelector(".existingCommentsContainer");
@@ -7,16 +8,21 @@ export async function renderComments(postId) {
 
     try {
         const postDetails = await postsServices.getPostById(postId);
-        const comments = postDetails.comments;
+        const allComments = postDetails.comments;
 
-        if (!comments || comments.length === 0) {
+        commentsById.clear(); 
+        if (!allComments || allComments.length === 0) {
             commentsContainer.innerHTML = "<p>Комментариев пока нет. Оставьте первый!</p>";
             return;
         }
 
-        comments.forEach((comment) => {
-            const commentCard = createCommentElement(comment);
-            commentsContainer.appendChild(commentCard);
+        allComments.forEach(comment => indexComments(comment, true)); 
+
+        allComments.forEach((comment) => {
+            const commentElement = createCommentElement(comment, postId, () => {
+                renderComments(postId);
+            });
+            commentsContainer.appendChild(commentElement);
         });
     } catch (error) {
         console.error("Ошибка загрузки комментариев:", error);

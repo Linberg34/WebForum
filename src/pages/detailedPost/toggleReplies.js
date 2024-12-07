@@ -1,26 +1,60 @@
+
 import { commentServices } from "../../storage/api/services/commentServices.js";
 import { createCommentElement } from "./createCommentElement.js";
+import { commentsById, indexComments } from "./commentsStore.js";
 
-export async function toggleReplies(commentId, repliesContainer, toggleButton) {
+export async function toggleReplies(commentId, repliesContainer, toggleButton, postId) {
     if (repliesContainer.childElementCount === 0) {
-        try {
-            const replies = await commentServices.getCommentTree(commentId);
+        const comment = commentsById.get(commentId);
 
-            if (replies && replies.length > 0) {
-                replies.forEach((reply) => {
-                    const replyElement = createCommentElement(reply);
-                    repliesContainer.appendChild(replyElement);
-                });
-                toggleButton.textContent = "Скрыть ответы";
-            } else {
-                repliesContainer.innerHTML = "<p>Ответов пока нет.</p>";
+        if (!comment) {
+            console.error("Комментарий не найден в локальном хранилище!");
+            return;
+        }
+
+        let replies;
+        if (isRootComment(comment) && !comment.repliesLoaded) {
+            try {
+                replies = await commentServices.getCommentTree(commentId);
+                comment.replies = replies;
+                comment.repliesLoaded = true;
+                replies.forEach(child => indexComments(child));
+            } catch (error) {
+                console.error(`Ошибка загрузки дерева для корневого коммента ${commentId}:`, error);
+                return;
             }
-        } catch (error) {
-            console.error("Ошибка загрузки ответов:", error);
-            repliesContainer.innerHTML = "<p>Ошибка загрузки ответов. Попробуйте позже.</p>";
+        } else {
+            replies = comment.replies;
+        }
+
+        if (replies && replies.length > 0) {
+            replies.forEach((reply) => {
+                const replyElement = createCommentElement(reply, postId, () => {
+
+                    toggleReplies(reply.id, replyElement.querySelector('.repliesContainer'), replyElement.querySelector('.toggleRepliesButton'), postId);
+                });
+                repliesContainer.appendChild(replyElement);
+            });
+
+            repliesContainer.style.display = "block";
+            toggleButton.textContent = "Скрыть ответы";
+        } else {
+            repliesContainer.innerHTML = "<p>Ответов пока нет.</p>";
+            repliesContainer.style.display = "block";
+            toggleButton.textContent = "Скрыть ответы";
         }
     } else {
-        repliesContainer.innerHTML = "";
-        toggleButton.textContent = "Показать ответы";
+        if (repliesContainer.style.display === "none") {
+            repliesContainer.style.display = "block";
+            toggleButton.textContent = "Скрыть ответы";
+        } else {
+            repliesContainer.style.display = "none";
+            toggleButton.textContent = "Развернуть ответы";
+        }
     }
+}
+
+
+function isRootComment(comment) {
+    return comment.isRoot === true;
 }

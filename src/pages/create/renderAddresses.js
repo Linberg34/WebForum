@@ -11,17 +11,16 @@ export async function renderAddresses(container) {
 
     const initialWrapper = document.createElement("div");
     initialWrapper.className = "address-field-wrapper";
-    initialWrapper.dataset.level = 0; 
+    initialWrapper.dataset.level = 0;
     container.appendChild(initialWrapper);
 
     const initialLabel = document.createElement("label");
-    initialLabel.textContent = "Субъект РФ"; 
+    initialLabel.textContent = "Субъект РФ";
     initialWrapper.appendChild(initialLabel);
 
     const initialSelect = document.createElement("select");
     initialSelect.id = "regionSelect"; 
     initialSelect.className = "address-select";
-    initialSelect.dataset.level = 0; 
     initialWrapper.appendChild(initialSelect);
 
     const emptyOption = document.createElement("option");
