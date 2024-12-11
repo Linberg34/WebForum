@@ -4,15 +4,9 @@ export async function handleSubscriptionButton(button, community) {
     const authToken = sessionStorage.getItem('authToken');
 
     if (!authToken) {
-        if(community.isClosed) {
-            button.disabled = true;
-            button.textContent = "Закрыто";
-            button.className = "closedButton";
-        }else{
-            button.disabled = true;
-            button.textContent = "Войдите, чтобы подписаться";
-            button.className = "disabledButton";
-        }
+        button.disabled = true;
+        button.textContent = "Войдите, чтобы подписаться";
+        button.className = "disabledButton";
         return;
     }
 
@@ -29,11 +23,7 @@ export async function handleSubscriptionButton(button, community) {
             return;
         }
 
-        if (community.isClosed) {
-            button.disabled = true;
-            button.textContent = "Закрыто";
-            button.className = "closedButton";
-        } else if (isSubscribed) {
+        if (isSubscribed) {
             button.textContent = "Отписаться";
             button.className = "unsubscribeButton";
 

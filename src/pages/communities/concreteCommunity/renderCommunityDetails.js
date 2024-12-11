@@ -16,7 +16,7 @@ export async function renderCommunityDetails(container,community) {
         adminCard.className = 'adminCard';
 
         const avatar = document.createElement('img');
-        avatar.src = admin.avatarUrl || 'https://via.placeholder.com/50';
+        avatar.src = admin.avatarUrl;
         avatar.alt = 'Avatar';
         avatar.className = `avatar ${admin.gender === 'Female' ? 'femaleAvatar' : 'maleAvatar'}`;
 

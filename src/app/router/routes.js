@@ -5,6 +5,7 @@ import { initProfilePage } from "../../pages/profile/profile";
 import { initDetailedPost } from "../../pages/detailedPost/detailedPost";
 import { initRegistration } from "../../pages/registration/regInit";
 import { initAuthorsPage } from "../../pages/authors/authorPage.js";
+import{initCommunityPage} from "../../pages/communities/concreteCommunity/communityPage.js";
 import { initCreatePostPage } from "../../pages/create/createPostPage.js";
 
 

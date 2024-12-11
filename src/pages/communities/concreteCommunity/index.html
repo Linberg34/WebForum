@@ -1,12 +1,11 @@
-
 <header class="header">
     <nav>
         <div class="navList">
             <div class="leftSection">
                 <span class="blogTitle">Блог №415</span>
-                <a href="/" class="mainPage">Главная</a>
-                <a href="/authors" class="mainPage">Авторы</a>
-                <a href="/communities" class="mainPage">Группы</a>
+                <a href="/" class="navLink">Главная</a>
+                <a href="/authors" class="navLink">Авторы</a>
+                <a href="/communities" class="navLink">Группы</a>
             </div>
             <div class="rightSection">
                 <div class="dropdown">
@@ -14,6 +13,8 @@
                         ... ▼
                     </button>
                     <ul id="dropdownMenu" class="dropdownMenu hidden">
+                        <li><a href="/profile">Профиль</a></li>
+                        <li><a href="/logout">Выйти</a></li>
                     </ul>
                 </div>
             </div>
@@ -21,68 +22,65 @@
     </nav>
 </header>
 
-
-<link rel="stylesheet" href="/public/assets/css/style.css">
 <div class="pageWrapper">
     <div class="mainContainer">
         <div class="communityTitleContainer">
             <div class="headerSection">
-                <h2>Группа "Стажировка"</h2>
+                <h2 id="communityTitle"> </h2>
                 <div class="actionButtons">
-                    <button class="writePostButton">Написать пост</button>
-                    <button class="unsubscribeButton">Отписаться</button>
+                    <button id="writePostButton" class="writePostButton hidden">Написать пост</button>
+                    <button id="subscribeButton" class="subscribeButton">Подписаться</button>
                 </div>
             </div>
-        
+
             <div class="infoSection">
-                <p><i class="icon-users"></i> <strong>7 подписчиков</strong></p>
-                <p>Тип сообщества: <span class="communityType">закрытое</span></p>
+                <p>
+                    <i class="icon-users"></i> 
+                    <strong id="subscribersCount"></strong>
+                </p>
+                <p>Тип сообщества: <span id="communityType" class="communityType"></span></p>
             </div>
-        
+
             <div class="adminsSection">
                 <h3>Администраторы</h3>
-                <div class="adminList">
-                    <div class="adminCard">
-                        <img src="https://via.placeholder.com/50" alt="Avatar" class="avatar maleAvatar">
-                        <span>AgentLost</span>
-                    </div>
-                    <div class="adminCard">
-                        <img src="https://via.placeholder.com/50" alt="Avatar" class="avatar femaleAvatar">
-                        <span>ЧеширКо</span>
-                    </div>
-                </div>
+                <div id="adminList" class="adminList"></div>
             </div>
-        </div>        
-        <div class="createPostButtonContainer">
-            <button class="createPostButton hidden">Написать пост</button>
         </div>
+
         <div class="filtersPostsPaginationWrapper">
-            <div class="filtersContainer">
-                <div class="filterNaming">Фильтры</div>
-                <div class="filterLogicContainer">
-                    <div class="searchLogicContainer">
-                        <div class="authorSearchContainer">
-                            <label for="authorSearchInput">Поиск по имени автора</label>
-                            <input type="text" id="authorSearchInput" placeholder="Введите имя автора">
-                        </div>
-                        <div class="tagSearchContainer">
-                            <label for="tagFilter">Поиск по тэгам</label>
-                            <select id="tagFilter" multiple>
-                                <option value="tag1"></option>
-                            </select>
-                        </div>
+            <div class="communityFilterContainer">
+                <div id="filtersTitle" class="filterNaming">Фильтры</div>
+                <div class="communityFilterLogicContainer">
+                    <div id="communityDateFilterContainer" class="dateFilterContainer">
+                        <label for="sortByDate">Сортировать</label>
+                        <select id="sortByDate">
+                            <option value="CreateDesc">По дате создания (сначала новые)</option>
+                            <option value="CreateAsc">По дате создания (сначала старые)</option>
+                        </select>
+                    </div>
+                    <div id="tagFilterContainer" class="tagFilterContainer">
+                        <label for="tagFilter">Поиск по тегам</label>
+                        <select id="tagFilter" multiple>
+                        </select>
                     </div>
                 </div>
+                <div class="communityButtonContainer">
+                    <button id="communityApplyFiltersButton">Применить</button>
+                </div>
             </div>
+
             <div id="postsContainer"></div>
-                <label for="pageSizeSelect">Размер страницы:</label>
-                <input id="pageSizeSelect" type=number min="1" value="5"></option>
-            <div id="paginationContainer" class="pagination">
+
+            <div class="paginationControls">
+                <label for="pageSizeSelect">Число постов на странице:</label>
+                <input id="pageSizeSelect" type="number" min="1" value="5">
+            <div id="paginationContainer" class="pagination"></div>
             </div>
+
         </div>
     </div>
-    <footer class="footerBig">
-        <p>© 2024 - Блог №415</p>
-    </footer>
 </div>
+<footer class="footerBig">
+    <p>© 2024 - Блог №415</p>
+</footer>
 

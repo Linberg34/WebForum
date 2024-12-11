@@ -915,6 +915,79 @@ a.mainPage:hover {
     font-size: 14px;
     color: #333;
 }
+/**/
+.communityFilterContainer {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+.communityFilterContainer p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.communityFilterLogicContainer {
+    display: flex;
+    padding:10px;
+    gap:15px; 
+}
+
+.dateFilterContainer,
+.tagFilterContainer {
+    flex: 1; 
+    min-width: 200px; 
+}
+
+.dateFilterContainer label,
+.tagFilterContainer label {
+    display: block; 
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.dateFilterContainer select,
+.tagFilterContainer select {
+    width: 100%; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.communityButtonContainer{
+    padding:5px 10px 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#communityApplyFiltersButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#communityApplyFiltersButton:hover {
+    background-color: #0056b3;
+}
+
+#communityApplyFiltersButton:focus {
+    outline: none;
+    box-shadow: 0 0 3px #007bff;
+}
+
+/**/
+
+
 
 /* Authors Page*/
 .authorsListContainer {

@@ -1,17 +1,25 @@
-import { communityServices } from "../../storage/api/services/communityService.js";
-import { handleSubscriptionButton } from "../../components/subscriptionHandler.js";
-import { renderPosts } from "../../main/renderPosts.js";
+import { communityServices } from "../../../storage/api/services/communityServices.js";
+import { renderCommunityDetails } from "./renderCommunityDetails.js";
+import { handleSubscriptionButton } from "../subscriptionHandler.js";
+import { renderCommunityPosts } from "./renderCommunityPosts.js";
+import { initDropDown } from "../../profile/dropDown.js";
+import { loadTags } from "../../main/loadTags.js";
+import { preventIncorrectInput } from "../../main/preventIncorrectInput.js";
+
 
 export async function initCommunityPage(container, params) {
-    const communityId = params.id;
+    const communityId = params;
+    initDropDown();
+    loadTags();
+    preventIncorrectInput();
     
 
     try {
         const community = await communityServices.getCommunityById(communityId);
 
         renderCommunityDetails(container, community);
+        renderCommunityPosts(communityId);
 
-        renderPosts(community.posts);
 
         const subscribeButton = container.querySelector('.unsubscribeButton, .subscribeButton');
         if (subscribeButton) {

@@ -21,8 +21,8 @@ export async function renderCommunities() {
         communityTitle.textContent = community.name;
 
         const subscribeButton = document.createElement("button");
-        subscribeButton.className = community.isClosed ? "closedButton" : "subscribeButton";
-        subscribeButton.textContent = community.isClosed ? "Закрыто" : "Подписаться";
+        subscribeButton.className =  "subscribeButton";
+        subscribeButton.textContent =  "Подписаться";
 
         handleSubscriptionButton(subscribeButton, community);
 
