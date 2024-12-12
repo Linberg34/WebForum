@@ -1,6 +1,6 @@
 import { postsServices } from "../../storage/api/services/postsServices.js";
 
-export function formPostData() {
+export function formPostData(communityId) {
     document.getElementById("createPostForm").addEventListener("submit", async (e) => {
         e.preventDefault(); 
 
@@ -15,7 +15,8 @@ export function formPostData() {
             addressId: addressGuid || null, 
             tags: Array.from(document.getElementById("tags").selectedOptions).map(
                 (option) => option.value
-            )
+            ),
+            communityId: communityId || null
         };
     
         if (!postData.title || !postData.description || !postData.readingTime || !postData.tags.length) {

@@ -5,13 +5,12 @@ import {parcerRoot} from './routes.js';
 
 export function onNavigate(container) {
     const path = window.location.pathname;
-    const config = getRouteConfig(path);
     
-
+    const config = getRouteConfig(path);
     if (!config) {
-        console.log(`Маршрут для пути "${path}" не найден.`);
         return;
     }
+
 
     fetch(`${parcerRoot}${config.sourcePath}`)
         .then(r => r.text())

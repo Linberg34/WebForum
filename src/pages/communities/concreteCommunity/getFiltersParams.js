@@ -13,6 +13,5 @@ export async function getFilters() {
     if (sortOrder) {
         filters.sorting = sortOrder.value;
     }
-
     return filters;
 }

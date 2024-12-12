@@ -1,12 +1,7 @@
-import { loadAddressOptions } from "./loadAddressOptions";
 import { handleNextAddressLevel } from "./handleNextAddressLevel";
+import { addressServices } from "../../storage/api/services/addressServices";
 
 export async function renderAddresses(container) {
-    if (!container) {
-        console.error("Контейнер для адресов не найден.");
-        return;
-    }
-
     container.innerHTML = "";
 
     const initialWrapper = document.createElement("div");
@@ -18,33 +13,59 @@ export async function renderAddresses(container) {
     initialLabel.textContent = "Субъект РФ";
     initialWrapper.appendChild(initialLabel);
 
-    const initialSelect = document.createElement("select");
-    initialSelect.id = "regionSelect"; 
-    initialSelect.className = "address-select";
-    initialWrapper.appendChild(initialSelect);
+    const inputElement = document.createElement("input");
+    inputElement.type = "text";
+    inputElement.className = "address-input";
+    inputElement.placeholder = "Начните вводить...";
+    initialWrapper.appendChild(inputElement);
 
-    const emptyOption = document.createElement("option");
-    emptyOption.value = "";
-    emptyOption.textContent = "Не выбрано";
-    initialSelect.appendChild(emptyOption);
+    const suggestionsList = document.createElement("ul");
+    suggestionsList.className = "address-suggestions";
+    suggestionsList.style.display = "none";
+    initialWrapper.appendChild(suggestionsList);
 
-    await loadAddressOptions(initialSelect);
+    let currentFetchId = 0;
 
-    initialSelect.addEventListener("change", async (event) => {
-        const selectedObjectId = event.target.value;
-        const selectedOption = event.target.selectedOptions[0];
-        const selectedObjectGuid = selectedOption.dataset.guid;
+    inputElement.addEventListener("input", async (event) => {
+        const query = event.target.value.trim();
+        const level = parseInt(initialWrapper.dataset.level, 10);
 
-        const wrappersToRemove = container.querySelectorAll(`.address-field-wrapper[data-level]`);
-        wrappersToRemove.forEach(wrapper => {
-            const level = parseInt(wrapper.dataset.level, 10);
-            if (level > 0) {
-                wrapper.remove();
-            }
-        });
+        suggestionsList.innerHTML = "";
+        suggestionsList.style.display = "none";
 
-        if (!selectedObjectId) return; 
+        currentFetchId += 1;
+        const fetchId = currentFetchId;
 
-        await handleNextAddressLevel(selectedObjectId, selectedObjectGuid, container);
+        const addresses = await addressServices.searchAddresses(null, query);
+
+        if (fetchId !== currentFetchId) return;
+
+        if (addresses && addresses.length > 0) {
+            addresses.forEach(addr => {
+                const li = document.createElement("li");
+                li.textContent = addr.text;
+                li.dataset.objectId = addr.objectId;
+                li.dataset.objectGuid = addr.objectGuid;
+                li.addEventListener("click", async () => {
+                    inputElement.value = addr.text;
+                    suggestionsList.innerHTML = "";
+                    suggestionsList.style.display = "none";
+
+                    const wrappersToRemove = container.querySelectorAll('.address-field-wrapper[data-level]');
+                    wrappersToRemove.forEach(wrapper => {
+                        const lvl = parseInt(wrapper.dataset.level, 10);
+                        if (lvl > level) {
+                            wrapper.remove();
+                        }
+                    });
+
+                    if (!addr.objectId) return;
+
+                    await handleNextAddressLevel(addr.objectId, addr.objectGuid, container);
+                });
+                suggestionsList.appendChild(li);
+            });
+            suggestionsList.style.display = "block";
+        }
     });
 }

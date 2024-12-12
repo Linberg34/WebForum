@@ -16,50 +16,56 @@ function createPath(path) { return `${parcerRoot}/${path}` };
 
 
 const routes = {
-    '/': { 
-        fn: (container) => initMainPage(container), 
-        sourcePath: "/src/pages/main/index.html"
+    '/': {
+        fn: (container) => initMainPage(container),
+        sourcePath: "/src/pages/main/index.html",
     },
-    '/login': { 
-        fn: (container) => initAuth(container), 
-        sourcePath: "/src/pages/auth/index.html"
+    
+    
+    '/login': {
+        fn: (container) => initAuth(container),
+        sourcePath: "/src/pages/auth/index.html",
     },
-    '/registration':{
-        fn: (container) => initRegistration(container), 
-        sourcePath: "/src/pages/registration/index.html"
-    }
-    ,
-    '/profile':{
-        fn:(container) => initProfilePage(container),
-        sourcePath:"/src/pages/profile/index.html"
+    '/registration': {
+        fn: (container) => initRegistration(container),
+        sourcePath: "/src/pages/registration/index.html",
     },
-    '/communities':{
-        fn:(container) => initCommunitiesPage(container),
-        sourcePath:"/src/pages/communities/index.html"
+    '/profile': {
+        fn: (container) => initProfilePage(container),
+        sourcePath: "/src/pages/profile/index.html",
     },
-    '/authors':{
-        fn:(container) => initAuthorsPage(container),
-        sourcePath:"/src/pages/authors/index.html"
+    '/communities': {
+        fn: (container) => initCommunitiesPage(container),
+        sourcePath: "/src/pages/communities/index.html",
     },
-    '/post/create':{
-        fn:(container) => initCreatePostPage(container),
-        sourcePath:"/src/pages/create/index.html"
+    '/authors': {
+        fn: (container) => initAuthorsPage(container),
+        sourcePath: "/src/pages/authors/index.html",
+    },
+    '/post/create': {
+        fn: (container) => initCreatePostPage(container, null),
+        sourcePath: "/src/pages/create/index.html",
+    },
+    '/post/create/:communityId': {
+        fn: (container, params) => initCreatePostPage(container, params.communityId),
+        sourcePath: "/src/pages/create/index.html",
     },
     '/post/:id': {
-        fn: (container, params) =>  initDetailedPost(container, params.id),
+        fn: (container, params) => initDetailedPost(container, params.id),
         sourcePath: "/src/pages/detailedPost/index.html",
     },
-    '/community/:id':{
-        fn:(container,params) => initCommunityPage(container,params.id),
-        sourcePath:"/src/pages/communities/concreteCommunity/index.html"
-    }
-
+    '/community/:id': {
+        fn: (container, params) => initCommunityPage(container, params.id),
+        sourcePath: "/src/pages/communities/concreteCommunity/index.html",
+    },
 };
+
+
 
 export function getRouteConfig(path) {
     for (const [routePath, route] of Object.entries(routes)) {
         const params = matchRoute(routePath, path);
-        
+
         if (params) {
             return { ...route, params };
         }
@@ -68,6 +74,7 @@ export function getRouteConfig(path) {
 }
 
 function matchRoute(routePath, currentPath) {
+
     const routeSegments = routePath.split('/').filter(Boolean);
     const currentSegments = currentPath.split('/').filter(Boolean);
 

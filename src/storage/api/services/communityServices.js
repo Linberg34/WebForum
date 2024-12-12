@@ -39,14 +39,27 @@ export const communityServices = {
     },
 
     async getCommunityPosts(communityId, params = {}) {
-        const queryParams = new URLSearchParams(params).toString();
-        return httpClient(`/community/${communityId}/post?${queryParams}`, {
+        const queryParams = new URLSearchParams();
+    
+        for (const key in params) {
+            const value = params[key];
+            if (Array.isArray(value)) {
+                value.forEach(v => queryParams.append(key, v));
+            } else if (typeof value === 'boolean') {
+                queryParams.append(key, value.toString());
+            } else if (value !== undefined && value !== null) {
+                queryParams.append(key, value);
+            }
+        }
+    
+        return httpClient(`/community/${communityId}/post?${queryParams.toString()}`, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`
-            }
+                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+            },
         });
-    },
+    }
+    ,
 
     async createCommunityPost(communityId, postData) {
         return httpClient(`/community/${communityId}/post`, {

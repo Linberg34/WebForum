@@ -2,7 +2,7 @@ import { communityServices } from "../../../storage/api/services/communityServic
 import { postsServices } from "../../../storage/api/services/postsServices.js";
 import { renderPaginationForCommunityPosts } from "./pagination.js";
 
-export async function renderCommunityPosts(communityId, currentPage =1, pageSize = 5) {
+export async function renderCommunityPosts(communityId, currentPage, pageSize ,filters ={}) {
     const postsContainer = document.getElementById("postsContainer");
     postsContainer.innerHTML = "";
     const userToken = sessionStorage.getItem("authToken");
@@ -56,9 +56,15 @@ export async function renderCommunityPosts(communityId, currentPage =1, pageSize
             adminCard.appendChild(adminName);
             adminList.appendChild(adminCard);
         });
-        const response = await communityServices.getCommunityPosts(communityId, currentPage, pageSize);
+        const response = await communityServices.getCommunityPosts(communityId,{ 
+            page: currentPage, 
+            size: pageSize ,
+            ...filters
+        });
         const posts = response.posts || [];
-        const totalPosts = response.totalRecords || 0; 
+        const totalPosts = response.pagination?.count || 0; 
+
+
 
         if (posts.length === 0) {
             postsContainer.innerHTML = "<p>В этом сообществе пока нет постов.</p>";
@@ -217,7 +223,7 @@ export async function renderCommunityPosts(communityId, currentPage =1, pageSize
         });
         
         renderPaginationForCommunityPosts(currentPage, totalPosts, pageSize, (page) => {
-            renderCommunityPosts(communityId, page, pageSize);
+            renderCommunityPosts(communityId, page, pageSize, filters);
         });
     } catch (error) {
         console.error("Ошибка при загрузке постов:", error);

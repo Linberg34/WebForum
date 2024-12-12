@@ -10,8 +10,6 @@ import { showCreatePostButton } from "./showCreatePostButton.js";
 
 let isInitialLoad = true; 
 
-//TODO6. Разбить логику CSS на файлы
-//TODO1. Разобраться с параметрами
 
 
 export async function initMainPage() {
@@ -27,7 +25,6 @@ export async function initMainPage() {
     const params = new URLSearchParams(window.location.search);
     const page = Number(params.get("page")) || 1;
     const pageSize = Number(params.get("size")) || 5;
-
 
     await fetchAndRenderPosts(page, pageSize);
 

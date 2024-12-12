@@ -1,22 +1,15 @@
-import { loadAddressOptions } from "./loadAddressOptions";
 import { addressServices } from "../../storage/api/services/addressServices";
 
 export async function handleNextAddressLevel(selectedObjectId, selectedObjectGuid, container) {
     try {
         const addressChain = await addressServices.getAddressChain(selectedObjectGuid);
-        console.log("Полученная цепочка адреса:", addressChain);
 
         if (!addressChain || addressChain.length === 0) {
             console.error("Цепочка адресов пустая.");
             return;
         }
 
-        const currentAddress = addressChain[addressChain.length - 1];
-        const currentLevel = currentAddress?.objectLevel;
-        console.log("Текущий уровень:", currentLevel);
-
-        const childAddresses = await addressServices.searchAddresses(selectedObjectId);
-        console.log("Дочерние адреса:", childAddresses);
+        const childAddresses = await addressServices.searchAddresses(selectedObjectId, "");
 
         if (!childAddresses || childAddresses.length === 0) {
             console.log("Нет дальнейших уровней для данного адреса.");
@@ -26,40 +19,67 @@ export async function handleNextAddressLevel(selectedObjectId, selectedObjectGui
         const nextLevel = childAddresses[0].objectLevel;
         const nextLevelText = childAddresses[0].objectLevelText;
 
-        console.log("Следующий уровень:", nextLevel, "Метка:", nextLevelText);
-
         const nextWrapper = document.createElement("div");
         nextWrapper.className = "address-field-wrapper";
-        nextWrapper.dataset.level = addressChain.length; 
-        container.appendChild(nextWrapper);
+        nextWrapper.dataset.level = addressChain.length;
 
         const labelElement = document.createElement("label");
         labelElement.textContent = nextLevelText;
         nextWrapper.appendChild(labelElement);
 
-        const selectElement = document.createElement("select");
-        selectElement.className = "address-select";
-        selectElement.dataset.level = addressChain.length; 
-        nextWrapper.appendChild(selectElement);
+        const inputElement = document.createElement("input");
+        inputElement.type = "text";
+        inputElement.className = "address-input";
+        inputElement.placeholder = "Начните вводить...";
+        nextWrapper.appendChild(inputElement);
 
-        await loadAddressOptions(selectElement, selectedObjectId);
+        const suggestionsList = document.createElement("ul");
+        suggestionsList.className = "address-suggestions";
+        suggestionsList.style.display = "none";
+        nextWrapper.appendChild(suggestionsList);
 
-        selectElement.addEventListener("change", async (event) => {
-            const newSelectedObjectId = event.target.value;
-            const newSelectedOption = event.target.selectedOptions[0];
-            const newSelectedObjectGuid = newSelectedOption.dataset.guid;
+        let currentFetchId = 0;
+        inputElement.addEventListener("input", async (event) => {
+            const query = event.target.value.trim();
+            const level = parseInt(nextWrapper.dataset.level, 10);
 
-            const wrappersToRemove = container.querySelectorAll(`.address-field-wrapper[data-level]`);
-            wrappersToRemove.forEach(wrapper => {
-                const level = parseInt(wrapper.dataset.level, 10);
-                if (level > addressChain.length) {
-                    wrapper.remove();
-                }
-            });
+            suggestionsList.innerHTML = "";
+            suggestionsList.style.display = "none";
 
-            if (!newSelectedObjectId) return;
+            currentFetchId += 1;
+            const fetchId = currentFetchId;
 
-            await handleNextAddressLevel(newSelectedObjectId, newSelectedObjectGuid, container);
+            const addresses = await addressServices.searchAddresses(selectedObjectId, query);
+
+            if (fetchId !== currentFetchId) return;
+
+            if (addresses && addresses.length > 0) {
+                addresses.forEach(addr => {
+                    const li = document.createElement("li");
+                    li.textContent = addr.text;
+                    li.dataset.objectId = addr.objectId;
+                    li.dataset.objectGuid = addr.objectGuid;
+                    li.addEventListener("click", async () => {
+                        inputElement.value = addr.text;
+                        suggestionsList.innerHTML = "";
+                        suggestionsList.style.display = "none";
+
+                        const wrappersToRemove = container.querySelectorAll('.address-field-wrapper[data-level]');
+                        wrappersToRemove.forEach(wrapper => {
+                            const lvl = parseInt(wrapper.dataset.level, 10);
+                            if (lvl > level) {
+                                wrapper.remove();
+                            }
+                        });
+
+                        if (!addr.objectId) return;
+
+                        await handleNextAddressLevel(addr.objectId, addr.objectGuid, container);
+                    });
+                    suggestionsList.appendChild(li);
+                });
+                suggestionsList.style.display = "block";
+            }
         });
     } catch (error) {
         console.error("Ошибка обработки следующего уровня адреса:", error);

@@ -3,6 +3,7 @@ export function renderPaginationForCommunityPosts(currentPage, totalPosts, pageS
     paginationContainer.innerHTML = ""; 
 
     const totalPages = Math.ceil(totalPosts / pageSize); 
+
     const maxVisiblePages = 5; 
 
     const createPageLink = (page) => {
@@ -25,6 +26,7 @@ export function renderPaginationForCommunityPosts(currentPage, totalPosts, pageS
     if (endPage - startPage < maxVisiblePages - 1) {
         startPage = Math.max(1, endPage - maxVisiblePages + 1);
     }
+
 
     if (startPage > 1) {
         paginationContainer.appendChild(createPageLink(1));
@@ -63,6 +65,7 @@ export function renderPaginationForCommunityPosts(currentPage, totalPosts, pageS
 
         paginationContainer.insertBefore(prevLink, paginationContainer.firstChild);
     }
+    
 
     if (currentPage < totalPages) {
         const nextLink = document.createElement("a");

@@ -7,11 +7,11 @@ export function createCommentElement(comment, postId, onReplySuccess) {
 
     const author = document.createElement("p");
     author.className = "commentAuthor";
-    author.textContent = comment.author || "Неизвестный автор";
+    author.textContent = comment.author || "";
 
     const content = document.createElement("p");
     content.className = "commentContent";
-    content.textContent = comment.content || "Комментарий отсутствует";
+    content.textContent = comment.content || "";
 
     const meta = document.createElement("p");
     meta.className = "commentMeta";
