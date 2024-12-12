@@ -1,0 +1,60 @@
+@import "variables.less";
+
+#communitiesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: @gap-between-items;
+    padding: 20px;
+}
+
+.communityCard {
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    padding: @padding-base * 1.5;
+    background-color: lighten(@background-color, 10%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.communityTitle {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: darken(@primary-color, 40%);
+    margin-right: 15px;
+}
+
+.subscribeButton, .unsubscribeButton, .closedButton, .disabledButton {
+    padding: 8px 12px;
+    border: none;
+    border-radius: @border-radius;
+    cursor: pointer;
+    font-size: @font-size-base;
+    transition: background-color @transition-speed;
+}
+
+.subscribeButton {
+    background-color: @primary-color;
+    color: @background-color;
+
+    &:hover {
+        background-color: darken(@primary-color, 10%);
+    }
+}
+
+.unsubscribeButton {
+    background-color: @danger-color;
+    color: @background-color;
+
+    &:hover {
+        background-color: darken(@danger-color, 10%);
+    }
+}
+
+.closedButton, .disabledButton {
+    background-color: lighten(@border-color, 20%);
+    color: darken(@border-color, 30%);
+    cursor: not-allowed;
+}

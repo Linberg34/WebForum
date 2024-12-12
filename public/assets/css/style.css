@@ -158,20 +158,6 @@ a.mainPage:hover {
 }
 
 
-.footerBig{
-    height: 70px;
-    margin-top: auto;
-    position:relative;
-    bottom: 0;
-    left:0;
-    width: 100%;
-    background-color: #F8F9FA;
-}
-.footer1 p {
-    padding-left: 7%;
-    color: #8C8D99;
-}
-
 
 /* Auth Form */
 
@@ -649,10 +635,15 @@ a.mainPage:hover {
 }
 
 .postTitle {
+    word-wrap: break-word;
     font-size: 18px;
     font-weight: bold;
     margin: 5px 0 10px;
     color: #333;
+}
+
+.postContent{
+    word-wrap: break-word;
 }
 
 .postSeparator {

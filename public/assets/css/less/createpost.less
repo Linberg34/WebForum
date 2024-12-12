@@ -1,0 +1,86 @@
+@import "variables.less";
+
+.createPostContainer {
+    margin-top: @padding-base;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.createPostContainer .createForm {
+    width: 50%;
+    padding: @padding-base;
+    box-sizing: border-box;
+    background: @background-color;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.createPostContainer h1 {
+    margin-bottom: @padding-base * 2;
+}
+
+.createPostContainer label {
+    margin-bottom: @padding-base / 2;
+    font-size: @font-size-base;
+    text-align: left;
+    display: block;
+}
+
+.createPostContainer input,
+.createPostContainer select,
+.createPostContainer textarea {
+    width: 98%;
+    padding: @padding-base;
+    margin-bottom: @padding-base;
+    border: 1px solid @border-color;
+    border-radius: @border-radius / 2;
+    font-size: @font-size-base;
+}
+
+.createPostContainer textarea {
+    resize: none;
+    height: 100px;
+}
+
+.createPostContainer .btnSubmit {
+    width: 100%;
+    padding: @padding-base;
+    background-color: @primary-color;
+    color: @background-color;
+    border: none;
+    border-radius: @border-radius / 2;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(@primary-color, 10%);
+    }
+}
+
+.address-suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid @border-color;
+    border-radius: @border-radius / 2;
+    background-color: @background-color;
+    padding: 0;
+    margin-top: @padding-base / 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    z-index: 1000;
+    list-style: none;
+
+    li {
+        padding: @padding-base / 2 @padding-base;
+        cursor: pointer;
+        font-size: @font-size-base;
+
+        &:hover {
+            background-color: lighten(@border-color, 20%);
+        }
+    }
+}

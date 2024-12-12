@@ -1,0 +1,41 @@
+@import "variables.less";
+
+.header {
+    height: @header-height;
+    padding: 0 @padding-horizontal;
+    border-bottom: 1px solid @border-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
+
+    .navList {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .leftSection {
+            display: flex;
+            align-items: center;
+            gap: @gap-between-items;
+        }
+
+        .rightSection {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: @gap-between-items;
+        }
+    }
+
+    .blogTitle {
+        font-weight: 500;
+    }
+}

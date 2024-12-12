@@ -1,0 +1,54 @@
+@import "variables.less";
+
+.profileFormContainer {
+    max-width: 720px;
+    margin: 30px auto;
+    padding: @padding-base * 2;
+    background: @background-color;
+    border-radius: @border-radius; 
+    border: 1px solid lighten(@border-color, 10%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profileForm label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    font-size: @font-size-base;
+}
+
+.profileForm input {
+    width: 95%;
+    padding: @padding-base;
+    margin-bottom: 15px;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    font-size: @font-size-base;
+}
+
+.profileForm select {
+    width: 98%;
+    padding: @padding-base;
+    margin-bottom: 15px;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    font-size: @font-size-base;
+}
+
+.saveButtonContainer {
+    text-align: right;
+}
+
+.saveButton {
+    background-color: @primary-color;
+    color: @background-color;
+    padding: @padding-base @padding-base * 2;
+    border: none;
+    border-radius: @border-radius;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+        background-color: darken(@primary-color, 10%);
+    }
+}

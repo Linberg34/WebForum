@@ -1,0 +1,19 @@
+@import "variables.less";
+
+a.mainPage,
+a.createPostButtonhidden,
+.loginButton {
+    text-decoration: none;
+    color: @text-color-dark;
+    transition: color @transition-speed;
+
+    &:hover {
+        color: @hover-color;
+        font-weight: bold;
+    }
+}
+
+.createPostButtonhidden:hover {
+    color: @hover-color;
+    font-weight: bold;
+}

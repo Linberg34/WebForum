@@ -1,4 +1,3 @@
-
 import { commentServices } from "../../storage/api/services/commentServices.js";
 import { createCommentElement } from "./createCommentElement.js";
 import { commentsById, indexComments } from "./commentsStore.js";
@@ -29,10 +28,7 @@ export async function toggleReplies(commentId, repliesContainer, toggleButton, p
 
         if (replies && replies.length > 0) {
             replies.forEach((reply) => {
-                const replyElement = createCommentElement(reply, postId, () => {
-
-                    toggleReplies(reply.id, replyElement.querySelector('.repliesContainer'), replyElement.querySelector('.toggleRepliesButton'), postId);
-                });
+                const replyElement = createCommentElement(reply, postId, () => {});
                 repliesContainer.appendChild(replyElement);
             });
 
@@ -53,7 +49,6 @@ export async function toggleReplies(commentId, repliesContainer, toggleButton, p
         }
     }
 }
-
 
 function isRootComment(comment) {
     return comment.isRoot === true;

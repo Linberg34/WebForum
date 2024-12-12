@@ -1,0 +1,59 @@
+@import "variables.less";
+
+.dropdown {
+    position: relative;
+
+    .dropdownButton {
+        background: none;
+        border: 0px solid @border-color;
+        padding: 5px 10px;
+        border-radius: @border-radius;
+        font-size: @font-size-base;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dropdownMenu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: @background-color;
+        border: 1px solid @border-color;
+        border-radius: @border-radius;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        z-index: 100;
+        min-width: 150px;
+
+        li {
+            padding: 10px;
+            text-align: left;
+
+            button {
+                background: none;
+                border: none;
+                padding: 0;
+                width: 100%;
+                text-align: left;
+                font-size: @font-size-base;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: @button-hover-bg;
+                }
+            }
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .dropdownMenu.show {
+        display: block;
+    }
+}

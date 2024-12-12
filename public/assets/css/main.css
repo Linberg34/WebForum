@@ -1,0 +1,1040 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+main {
+  min-height: calc(100vh - 48px - 70px);
+}
+.header {
+  height: 47px;
+  padding: 0 30px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.header .navList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.header .navList .leftSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.header .navList .rightSection {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+.header .blogTitle {
+  font-weight: 500;
+}
+a.mainPage,
+a.createPostButtonhidden,
+.loginButton {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+a.mainPage:hover,
+a.createPostButtonhidden:hover,
+.loginButton:hover {
+  color: #383838;
+  font-weight: bold;
+}
+.createPostButtonhidden:hover {
+  color: #383838;
+  font-weight: bold;
+}
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdownButton {
+  background: none;
+  border: 0px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dropdown .dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+  min-width: 150px;
+}
+.dropdown .dropdownMenu li {
+  padding: 10px;
+  text-align: left;
+}
+.dropdown .dropdownMenu li button {
+  background: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+.dropdown .dropdownMenu li button:hover {
+  background-color: #f4f4f4;
+}
+.dropdown .hidden {
+  display: none;
+}
+.dropdown .dropdownMenu.show {
+  display: block;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  background-color: #fff;
+}
+.footer p {
+  padding-left: 5%;
+  color: #8C8D99;
+}
+.authFormContainer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+.authFormContainer .loginForm {
+  min-width: 320px;
+  max-width: 480px;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.authFormContainer h2 {
+  margin-bottom: 20px;
+}
+.authFormContainer label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  text-align: left;
+}
+.authFormContainer input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.authFormContainer .btnEnter {
+  width: 95%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.authFormContainer .btnEnter:hover {
+  background-color: #0062cc;
+}
+.authFormContainer .btnReg {
+  width: 95%;
+  padding: 10px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.registrationFormContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+.registrationFormContainer .regForm {
+  min-width: 320px;
+  max-width: 480px;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f7f7f7;
+}
+.registrationFormContainer h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+.registrationFormContainer label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #000000;
+  text-align: left;
+  display: block;
+}
+.registrationFormContainer input,
+.registrationFormContainer select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.registrationFormContainer input:focus,
+.registrationFormContainer select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+.registrationFormContainer small {
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #6c757d;
+}
+.registrationFormContainer .btnReg {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.registrationFormContainer .btnReg:hover {
+  background-color: #0062cc;
+}
+.profileFormContainer {
+  max-width: 720px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #f7f7f7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.profileForm label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.profileForm input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.profileForm select {
+  width: 98%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.saveButtonContainer {
+  text-align: right;
+}
+.saveButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.saveButton:hover {
+  background-color: #0062cc;
+}
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+.mainContainer {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+.createPostButtonContainer {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5px;
+}
+.createPostButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.createPostButton:hover {
+  color: #0062cc;
+  font-weight: bold;
+}
+.createPostButton.hidden {
+  display: none;
+}
+.filtersContainer {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  position: relative;
+}
+.filtersContainer p {
+  margin: 0 0 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+.filterNaming {
+  width: 100%;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 10px;
+  font-size: 20px;
+  box-sizing: border-box;
+  text-align: left;
+}
+.filterLogicContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filterLogicContainer label {
+  font-size: 14px;
+  margin-right: 10px;
+}
+.filterLogicContainer input,
+.filterLogicContainer select,
+.filterLogicContainer button {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.filterLogicContainer button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.filterLogicContainer button:hover {
+  background-color: #0062cc;
+}
+.authorSearch {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+}
+.authorSearchContainer,
+.tagSearchContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.authorSearchContainer input,
+.tagSearchContainer input,
+.authorSearchContainer select,
+.tagSearchContainer select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.authorSearchContainer select,
+.tagSearchContainer select {
+  max-height: 65px;
+}
+.searchLogicContainer {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.searchLogicContainer2 {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+.filterColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  max-width: 100%;
+}
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  flex: 0;
+}
+.checkboxContainer input {
+  margin: 0;
+}
+.checkboxContainer label {
+  white-space: nowrap;
+  margin: 0;
+}
+#postsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+.postCard {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.postCard .postHeader {
+  margin-bottom: 10px;
+}
+.postCard .postHeader a {
+  text-decoration: none;
+}
+.postCard .postImage {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+.postCard .postTitle {
+  word-wrap: break-word;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0 10px;
+  color: #333;
+}
+.postCard .postDescription {
+  word-wrap: break-word;
+  font-size: 14px;
+  color: #727380;
+  margin-bottom: 10px;
+}
+.postCard .postFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.postCard .commentsButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+}
+.postCard .commentsButton:hover {
+  color: #007bff;
+}
+.postCard .likeContainer {
+  display: flex;
+  align-items: center;
+}
+.postCard .likeContainer .likeCount {
+  margin-right: 5px;
+  font-size: 14px;
+  color: #333;
+}
+.postCard .likeContainer .likeButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.postCard .likeContainer .likeButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.postCard .likeContainer .likeButton:hover {
+  transform: scale(1.2);
+}
+.showMoreButton {
+  display: inline-block;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+.showMoreButton:hover {
+  text-decoration: none;
+  color: #0062cc;
+}
+.showMoreButton:focus {
+  outline: none;
+}
+#paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 10px 0;
+  font-family: arial;
+}
+#paginationContainer .pageLink {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #007bff;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+#paginationContainer .pageLink:hover {
+  background-color: #99caff;
+  color: #0062cc;
+  border-color: #007bff;
+}
+#paginationContainer .currentPage {
+  padding: 8px 12px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  pointer-events: none;
+}
+#communitiesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+.communityCard {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.communityTitle {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #001933;
+  margin-right: 15px;
+}
+.subscribeButton,
+.unsubscribeButton,
+.closedButton,
+.disabledButton {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+.subscribeButton {
+  background-color: #007bff;
+  color: #fff;
+}
+.subscribeButton:hover {
+  background-color: #0062cc;
+}
+.unsubscribeButton {
+  background-color: #dc3545;
+  color: #fff;
+}
+.unsubscribeButton:hover {
+  background-color: #bd2130;
+}
+.closedButton,
+.disabledButton {
+  background-color: #ffffff;
+  color: #919191;
+  cursor: not-allowed;
+}
+.communityTitleContainer {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.headerSection h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.actionButtons button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+.actionButtons button.writePostButton {
+  background-color: #007bff;
+}
+.actionButtons button.unsubscribeButton {
+  background-color: #dc3545;
+}
+.infoSection {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #727380;
+}
+.infoSection i.icon-users {
+  margin-right: 5px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+.communityType {
+  font-weight: bold;
+}
+.adminsSection {
+  margin-top: 15px;
+}
+.adminsSection h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+.adminsSection .adminList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.adminsSection .adminCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.adminsSection .adminCard .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+.adminsSection .adminCard .avatar.maleAvatar {
+  background-color: #007bff;
+}
+.adminsSection .adminCard .avatar.femaleAvatar {
+  background-color: #ff69b4;
+}
+.adminsSection .adminCard span {
+  font-size: 14px;
+  color: #333;
+}
+.communityFilterContainer {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.communityFilterContainer p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+.communityFilterLogicContainer {
+  display: flex;
+  padding: 10px;
+  gap: 15px;
+}
+.communityFilterLogicContainer .dateFilterContainer,
+.communityFilterLogicContainer .tagFilterContainer {
+  flex: 1;
+  min-width: 200px;
+}
+.communityFilterLogicContainer .dateFilterContainer label,
+.communityFilterLogicContainer .tagFilterContainer label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.communityFilterLogicContainer .dateFilterContainer select,
+.communityFilterLogicContainer .tagFilterContainer select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.communityButtonContainer {
+  padding: 5px 10px 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+#communityApplyFiltersButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#communityApplyFiltersButton:hover {
+  background-color: #0062cc;
+}
+#communityApplyFiltersButton:focus {
+  outline: none;
+  box-shadow: 0 0 3px #007bff;
+}
+.authorsListContainer {
+  margin: 20px auto;
+  max-width: 800px;
+}
+.authorCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+}
+.authorInfo {
+  display: flex;
+  align-items: center;
+}
+.authorAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.authorDetails {
+  font-size: 14px;
+}
+.authorStats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.authorStats .statsItem {
+  margin-top: 5px;
+  padding: 5px 10px;
+  gap: 5px;
+  display: inline-block;
+  background-color: #1380f4;
+  color: #333;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: default;
+  text-align: center;
+}
+.authorNameLink {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+.avatarWrapper {
+  position: relative;
+  display: inline-block;
+}
+.avatarWrapper .authorAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.avatarWrapper .crown {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: gold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.avatarWrapper .crown::after {
+  content: "👑";
+  font-size: 16px;
+  line-height: 16px;
+  color: #fff;
+}
+.createPostContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+.createPostContainer .createForm {
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.createPostContainer h1 {
+  margin-bottom: 20px;
+}
+.createPostContainer label {
+  margin-bottom: 10px / 2;
+  font-size: 14px;
+  text-align: left;
+  display: block;
+}
+.createPostContainer input,
+.createPostContainer select,
+.createPostContainer textarea {
+  width: 98%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px / 2;
+  font-size: 14px;
+}
+.createPostContainer textarea {
+  resize: none;
+  height: 100px;
+}
+.createPostContainer .btnSubmit {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px / 2;
+  font-size: 16px;
+  cursor: pointer;
+}
+.createPostContainer .btnSubmit:hover {
+  background-color: #0062cc;
+}
+.address-suggestions {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px / 2;
+  background-color: #fff;
+  padding: 0;
+  margin-top: 10px / 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 1000;
+  list-style: none;
+}
+.address-suggestions li {
+  padding: 10px / 2 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.address-suggestions li:hover {
+  background-color: #ffffff;
+}
+.detailedPostCard {
+  width: 100%;
+  max-width: 75%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.commentsContainer {
+  max-width: 75%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.commentCard {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+}
+.createCommentContainer {
+  margin-top: 20px;
+}
+.replyButton,
+.editButton,
+.deleteButton,
+.toggleRepliesButton {
+  margin-right: 10px / 2;
+  font-size: 0.85em;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #007bff;
+}
+.replyButton:hover,
+.editButton:hover,
+.deleteButton:hover,
+.toggleRepliesButton:hover {
+  text-decoration: underline;
+}
+.commentsButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+}
+.commentsButton:hover {
+  color: #007bff;
+}
+.likeContainer {
+  display: flex;
+  align-items: center;
+}
+.likeContainer .likeCount {
+  margin-right: 5px;
+  font-size: 14px;
+  color: #333;
+}
+.likeContainer .likeButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.likeContainer .likeButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.likeContainer .likeButton:hover {
+  transform: scale(1.2);
+}
+.postFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.postImage {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+.repliesContainer {
+  margin-left: 10px;
+  padding-left: 10px / 2;
+  border-left: 1px solid #ddd;
+}
+.replyTextArea {
+  width: 98%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.replySubmitButton {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.replySubmitButton:hover {
+  background-color: #0062cc;
+}
+.geoContainer {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  color: #727380;
+  font-size: 0.9em;
+}
+.geoContainer i {
+  margin-right: 5px;
+  color: #007bff;
+}

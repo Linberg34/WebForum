@@ -1,0 +1,93 @@
+@import "variables.less";
+
+.authorsListContainer {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.authorCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: @padding-base;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    margin-bottom: @padding-base;
+    background-color: lighten(@background-color, 10%);
+}
+
+.authorInfo {
+    display: flex;
+    align-items: center;
+}
+
+.authorAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.authorDetails {
+    font-size: @font-size-base;
+}
+
+.authorStats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .statsItem {
+        margin-top: 5px;
+        padding: 5px 10px;
+        gap:5px;
+        display: inline-block;
+        background-color: #1380f4;
+        color: @text-color-dark;
+        border-radius: @border-radius;
+        font-size: @font-size-base;
+        cursor: default;
+        text-align: center;
+    }
+}
+
+.authorNameLink {
+    color: @text-color-dark;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.avatarWrapper {
+    position: relative;
+    display: inline-block;
+
+    .authorAvatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .crown {
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: gold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: @background-color;
+        font-size: @font-size-base;
+        font-weight: bold;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+
+        &::after {
+            content: "👑";
+            font-size: 16px;
+            line-height: 16px;
+            color: @background-color;
+        }
+    }
+}

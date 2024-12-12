@@ -39,7 +39,7 @@ export function createCommentElement(comment, postId, onReplySuccess) {
     repliesContainer.className = "repliesContainer";
     repliesContainer.style.display = "none";
 
-    if (comment.subComments > 0) {
+    if (comment.isRoot === true && comment.subComments > 0) {
         const toggleRepliesButton = document.createElement("button");
         toggleRepliesButton.className = "toggleRepliesButton";
         toggleRepliesButton.textContent = "Развернуть ответы";

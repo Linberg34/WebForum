@@ -6,6 +6,8 @@
     "parcel": "^2.13.1"
   },
   "dependencies": {
+    "gulp": "^5.0.0",
+    "gulp-less": "^5.0.0",
     "imask": "^7.6.1",
     "less": "^4.2.1"
   }
