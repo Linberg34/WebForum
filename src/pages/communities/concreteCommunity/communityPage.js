@@ -7,6 +7,7 @@ import { loadTags } from "../../main/loadTags.js";
 import { preventIncorrectInput } from "../../main/preventIncorrectInput.js";
 import {getFilters} from './getFiltersParams.js';
 
+
 export async function initCommunityPage(container, params) {
     const communityId = params;
     initDropDown();

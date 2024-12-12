@@ -2,6 +2,8 @@ import { communityServices } from "../../../storage/api/services/communityServic
 import { postsServices } from "../../../storage/api/services/postsServices.js";
 import { renderPaginationForCommunityPosts } from "./pagination.js";
 
+
+
 export async function renderCommunityPosts(communityId, currentPage, pageSize ,filters ={}) {
     const postsContainer = document.getElementById("postsContainer");
     postsContainer.innerHTML = "";

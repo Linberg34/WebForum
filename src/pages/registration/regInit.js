@@ -32,12 +32,10 @@ export function initRegistration() {
         );
 
         try {
-            console.log(formData);
             const data = await authServices.register(formData);
 
             sessionStorage.setItem("authToken", data.token);
 
-            console.log("perehod na profile");
             navigate('/profile');
         } catch (error) {
             console.error('Ошибка:', error);
