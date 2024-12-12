@@ -2,6 +2,7 @@ import { applyPhoneMask } from '../../shared/validations/applyPhoneMask.js';
 import { validateRegistration } from './validateRegistration.js';
 import { authServices } from '../../storage/api/services/authServices.js';
 import { navigate, onNavigate } from '../../app/router/router.js';
+import { showServerErrorAlert } from './showServerAlert.js';
 
 export function initRegistration() {
     const phoneInput = document.getElementById('phone');
@@ -21,7 +22,6 @@ export function initRegistration() {
 
         formData.birthDate = formData.birthDate || null; 
         formData.phoneNumber = formData.phoneNumber.trim() === "+7 (___) ___-__-__" ? null : formData.phoneNumber || null;
-        
 
         const errors = validateRegistration(
             formData.fullName,
@@ -31,6 +31,11 @@ export function initRegistration() {
             formData.phoneNumber
         );
 
+        if (errors.length > 0) {
+            alert(errors.join('\n'));
+            return;
+        }
+
         try {
             const data = await authServices.register(formData);
 
@@ -39,7 +44,18 @@ export function initRegistration() {
             navigate('/profile');
         } catch (error) {
             console.error('Ошибка:', error);
-            alert(error.message);
+
+            if (error.response) {
+                try {
+                    const errorBody = await error.response.json();
+                    showServerErrorAlert(errorBody);
+                } catch (parseError) {
+                    alert('Неизвестная ошибка сервера.');
+                }
+            } else {
+                alert('Ошибка сети или неизвестная ошибка.');
+            }
         }
     });
 }
+
