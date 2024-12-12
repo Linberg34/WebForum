@@ -27,6 +27,10 @@ main {
   justify-content: space-between;
   width: 100%;
 }
+.header .navList .navLink {
+  text-decoration: none;
+  color: #333;
+}
 .header .navList .leftSection {
   display: flex;
   align-items: center;
@@ -633,6 +637,7 @@ a.createPostButtonhidden:hover,
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
   margin-bottom: 15px;
 }
 .headerSection h2 {

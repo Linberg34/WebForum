@@ -229,6 +229,6 @@ export async function renderCommunityPosts(communityId, currentPage, pageSize ,f
         });
     } catch (error) {
         console.error("Ошибка при загрузке постов:", error);
-        postsContainer.innerHTML = "<p>Не удалось загрузить посты. Попробуйте позже.</p>";
+        postsContainer.innerHTML = "<p>Не удалось загрузить посты. Возможно вы не подписаны на сообщество.</p>";
     }
 }
