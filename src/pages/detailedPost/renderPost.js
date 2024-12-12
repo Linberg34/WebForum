@@ -141,7 +141,7 @@ export async function renderPost(postId) {
                     likeButton.textContent = post.hasLike ? "❤️" : "🤍";
                     likeCount.textContent = post.likes;
                 } catch (error) {
-                    console.error("Ошибка при изменении лайка:", error);
+                    console.error("Ошибка при изменении лайка:", error.message);
                     alert("Не удалось изменить лайк. Попробуйте позже.");
                 }
             });

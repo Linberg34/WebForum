@@ -39,6 +39,9 @@ export async function initDropDown() {
         } catch (error) {
             console.error('Ошибка загрузки профиля:', error);
             userButton.textContent = "Ошибка загрузки ▼";
+            userButton.addEventListener('click', () => {
+                window.location.href = '/login';
+            });
         }
     } else {
         userButton.textContent = "Войдите в систему ▼";
